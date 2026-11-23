@@ -1,0 +1,123 @@
+---
+import Icon from './Icon.astro';
+/** centered: light-theme pages, where the original's banner sits centred inside the hero. */
+interface Props { banner?: boolean; centered?: boolean }
+const { banner = true, centered = false } = Astro.props;
+
+const platformLinks = [
+  { href: '/platform/fx-risk-management', icon: 'nav-governance', title: 'FX Governance', text: 'Manage hedging with confidence' },
+  { href: '/platform/transparent-fx-execution', icon: 'nav-execute', title: 'Execute Transparently', text: 'End opaque pricing' },
+  { href: '/platform/fx-trade-analyser', icon: 'nav-analyse', title: 'Analyse Your Trades', text: 'Uncover the cost of your trades' },
+  { href: '/platform/global-accounts-and-payments', icon: 'nav-accounts', title: 'Global Accounts & Payments', text: 'Receive, hold and send' },
+];
+const companyLinks = [
+  { href: '/about-us', icon: 'nav-governance', title: 'About Us', text: 'Experienced leadership' },
+  { href: '/contact-us', icon: 'nav-execute', title: 'Contact Us', text: 'Office in London & Sydney' },
+];
+const newsHref = '/insights/fexco-backs-tenora-with-ps7-5m-as-the-uk-fintech-expands-into-corporate-treasury-solutions';
+---
+
+<header class="site-nav" data-nav>
+  <div class="site-nav-inner">
+    <div class="site-nav-left">
+      <a class="site-nav-logo" href="/" aria-label="Tenora home">
+        <img class="site-nav-logo-img" src="/assets/67b6164e94f0e2a3e8bfedad_Group-6.svg" alt="Tenora" width="127" height="38" />
+      </a>
+
+      <div class="nav-menu" data-nav-menu>
+        <div class="nav-dropdown" data-dropdown>
+          <button class="nav-dropdown-toggle" type="button" aria-expanded="false">
+            <span>Platform</span><Icon name="chevron-down" class="nav-dropdown-arrow" />
+          </button>
+          <div class="nav-dropdown-panel">
+            <div class="nav-dropdown-inner">
+              <p class="nav-panel-title">All delivered through one connected platform</p>
+              <div class="nav-panel-grid">
+                {platformLinks.map((l) => (
+                  <a class="nav-panel-link" href={l.href}>
+                    <Icon name={l.icon} class="nav-panel-icon" />
+                    <span class="nav-panel-text">
+                      <span class="nav-panel-link-title">{l.title}</span>
+                      <span class="nav-panel-link-desc">{l.text}</span>
+                    </span>
+                  </a>
+                ))}
+              </div>
+              <div class="nav-panel-footer">
+                <a class="nav-panel-more" href="/platform/what-is-fx-orchestration">
+                  What is FX Orchestration <Icon name="arrow-right" class="nav-panel-more-icon" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-dropdown" data-dropdown>
+          <button class="nav-dropdown-toggle" type="button" aria-expanded="false">
+            <span>Company</span><Icon name="chevron-down" class="nav-dropdown-arrow" />
+          </button>
+          <div class="nav-dropdown-panel">
+            <div class="nav-dropdown-inner">
+              <p class="nav-panel-title"><strong>Company</strong></p>
+              <div class="nav-panel-grid">
+                {companyLinks.map((l) => (
+                  <a class="nav-panel-link" href={l.href}>
+                    <Icon name={l.icon} class="nav-panel-icon" />
+                    <span class="nav-panel-text">
+                      <span class="nav-panel-link-title">{l.title}</span>
+                      <span class="nav-panel-link-desc">{l.text}</span>
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a class="nav-link" href="/insights">Insights</a>
+        <a class="nav-menu-trial" href="/trade-analyser-lite">Free Trade Analyser</a>
+      </div>
+    </div>
+
+    <div class="site-nav-actions">
+      <a class="btn btn-outline nav-btn-trial" href="/trade-analyser-lite">Free Trade Analyser</a>
+      <a class="btn btn-primary nav-btn-contact" href="/contact-us">Contact Us</a>
+      <button class="nav-burger" type="button" aria-label="Open menu" aria-expanded="false" data-nav-burger>
+        <span class="nav-burger-line"></span><span class="nav-burger-line"></span><span class="nav-burger-line"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+{banner && (
+  <div class={centered ? "announce announce-centered" : "announce"}>
+    <div class="announce-inner">
+      <div class="announce-copy">
+        <img class="announce-logo" src="/assets/6ab39f12c2a868076067f33d_fexco_red.png"
+          srcset="/assets/6ab39f12c2a868076067f33d_fexco_red-p-500.png 500w, /assets/6ab39f12c2a868076067f33d_fexco_red.png 507w"
+          sizes="(max-width: 507px) 100vw, 507px" alt="Fexco" width="68" height="24" />
+        <p class="announce-text">Tenora secures £7.5m commitment from Fexco.</p>
+      </div>
+      <a class="announce-link" href={newsHref}>Read More</a>
+    </div>
+  </div>
+)}
+
+<script>
+  const nav = document.querySelector('[data-nav]');
+  nav?.querySelectorAll<HTMLElement>('[data-dropdown]').forEach((dd) => {
+    const btn = dd.querySelector('button');
+    btn?.addEventListener('click', () => {
+      const open = dd.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', String(open));
+    });
+  });
+  const burger = nav?.querySelector<HTMLElement>('[data-nav-burger]');
+  burger?.addEventListener('click', () => {
+    const open = nav!.classList.toggle('is-menu-open');
+    burger.setAttribute('aria-expanded', String(open));
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') nav?.querySelectorAll('.is-open').forEach((el) => el.classList.remove('is-open'));
+  });
+</script>

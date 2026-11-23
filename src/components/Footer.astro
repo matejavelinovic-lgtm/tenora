@@ -1,0 +1,56 @@
+---
+const columns = [
+  {
+    title: 'Platform',
+    links: [
+      { href: '/platform/fx-risk-management', label: 'FX Governance' },
+      { href: '/platform/transparent-fx-execution', label: 'Execute Transparently' },
+      { href: '/platform/fx-trade-analyser', label: 'Analyse Your Trades' },
+      { href: '/platform/global-accounts-and-payments', label: 'Global Accounts & Payments' },
+      { href: '/trade-analyser-lite', label: 'Free Trade Analyser' },
+    ],
+  },
+  {
+    title: 'About',
+    links: [
+      { href: '/about-us', label: 'About Us' },
+      { href: '/contact-us', label: 'Contact Us' },
+      { href: '/book-a-call', label: 'Book A Call' },
+      { href: '/insights', label: 'Insights' },
+    ],
+  },
+  {
+    title: 'Legal Hub',
+    links: [
+      { href: '/legal-hub', label: 'Policies and Terms' },
+      { href: '/docs/modern-slavery-statement-v1.0.pdf', label: 'Modern Slavery Statement' },
+      { href: '/legal/governance', label: 'Governance' },
+    ],
+  },
+];
+---
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-main reveal">
+        <div class="footer-brand">
+          <img class="footer-logo" src="/assets/6894af655c7efbc90540c08d_tenora_lgoo.png" alt="Tenora" width="110" height="32" loading="lazy" />
+          <p class="footer-slogan">Transparency | Trust | Transformation</p>
+        </div>
+        <p class="footer-address">Tenora Financial Group Limited.<br />41 Moorgate, London, EC2R 6LL.<br /><br />Email: connect@tenora.com <br />Telephone: +44 (0)203 697 0300</p>
+      </div>
+      <div class="footer-links reveal">
+        {columns.map((col) => (
+          <div class="footer-column">
+            <p class="footer-title">{col.title}</p>
+            {col.links.map((l) => <a class="footer-link" href={l.href}>{l.label}</a>)}
+          </div>
+        ))}
+      </div>
+    </div>
+    <div class="footer-notice">
+      <p class="footer-notice-text">© 2026 Tenora Financial Group Limited (Company No. 16008121), 41 Moorgate, City of London, EC2R 6LL. Payment and e-money services are provided by Tenora Financial Solutions Limited (Company No. 16018511), authorised by the Financial Conduct Authority as an Authorised Electronic Money Institution (<a class="footer-notice-link" href="https://register.fca.org.uk/s/firm?id=001Sk00000Y5S3JIAV" target="_blank" rel="noopener">FRN:1030641</a>). This website is for general information only and does not constitute financial or legal advice.<br /><a class="footer-notice-link" href="/legal-hub">Legal</a> | <a class="footer-notice-link" href="/docs/privacy-policy-v1.0.pdf" target="_blank">Privacy Policy</a></p>
+    </div>
+  </div>
+</footer>

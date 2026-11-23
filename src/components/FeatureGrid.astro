@@ -1,0 +1,21 @@
+---
+// Grey band: left-aligned heading over a 3-column grid of feature tiles.
+import FeatureTile from './FeatureTile.astro';
+interface Tile { title: string; text: string; icon?: string }
+// centered: heading centred on an off-white inner panel (trade analyser).
+interface Props { eyebrow: string; title: string; text?: string; tiles: Tile[]; centered?: boolean }
+const { eyebrow, title, text, tiles, centered = false } = Astro.props;
+---
+
+<section class={centered ? 'band band-grey band-feature' : 'band band-grey band-feature-grid'}>
+  <div class={centered ? 'band-inner band-inner-padded process-inner' : 'band-inner band-inner-padded'}>
+    <div class={centered ? 'section-heading section-heading-center reveal' : text ? 'section-heading feature-grid-heading reveal' : 'section-heading feature-grid-heading feature-grid-heading-empty reveal'}>
+      <p class="eyebrow">{eyebrow}</p>
+      <h2 class={centered ? 'h2 h2-center' : 'h2'} set:html={title} />
+      {text && <p class={centered ? 'lead lead-center' : 'lead'}>{text}</p>}
+    </div>
+    <div class="governance-grid feature-grid reveal-group">
+      {tiles.map((t) => <FeatureTile {...t} />)}
+    </div>
+  </div>
+</section>

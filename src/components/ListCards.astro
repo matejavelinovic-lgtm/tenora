@@ -1,0 +1,39 @@
+---
+// White band: centred heading over three filled cards, each with an icon,
+// eyebrow, title, text and a tick list.
+import Icon from './Icon.astro';
+// spaced: one more 24px gap above the list (the original's third card has an
+// extra empty element there).
+interface Card { icon: string; eyebrow: string; title: string; text: string; items: string[]; spaced?: boolean }
+interface Props { eyebrow: string; title: string; text: string; cards: Card[] }
+const { eyebrow, title, text, cards } = Astro.props;
+---
+
+<section class="band band-light">
+  <div class="band-inner band-inner-padded">
+    <div class="section-heading section-heading-center reveal">
+      <p class="eyebrow">{eyebrow}</p>
+      <h2 class="h2 h2-center">{title}</h2>
+      <p class="lead lead-center">{text}</p>
+    </div>
+    <div class="process-grid">
+      {cards.map((c) => (
+        <div class="process-card process-card-filled reveal">
+          <div class={c.spaced ? 'process-card-body list-card-body-spaced' : 'process-card-body'}>
+            <Icon name={c.icon} class="process-card-icon" />
+            <div class="list-card-title-wrap">
+              <p class="eyebrow">{c.eyebrow}</p>
+              <h3 class="list-card-title">{c.title}</h3>
+            </div>
+            <p class="process-card-text" set:html={c.text} />
+          </div>
+          <ul class="tick-list">
+            {c.items.map((it) => (
+              <li class="tick-item"><Icon name="tick" class="tick-icon" /><span class="tick-text">{it}</span></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

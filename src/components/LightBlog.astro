@@ -1,0 +1,35 @@
+---
+// White band: "Tenora Insights" heading with an outline link, the three latest posts.
+// current: the post being read, whose card text the original turns green.
+import { latestInsights, insightHref } from '../lib/insights';
+interface Props { eyebrow?: string; title?: string; current?: string }
+const { eyebrow = 'Our blog', title = 'Tenora Insights', current } = Astro.props;
+const posts = await latestInsights(3);
+---
+
+<section class="band band-white">
+  <div class="band-inner light-blog-inner">
+    <div class="light-blog-head">
+      <div class="feature-copy-alt light-blog-heading">
+        <div class="feature-alt-head">
+          <p class="eyebrow">{eyebrow}</p>
+          <h2 class="feature-alt-title feature-alt-title-smaller">{title}</h2>
+        </div>
+      </div>
+      <div class="light-blog-link"><a class="btn btn-outline btn-outline-dark" href="/insights">Read More</a></div>
+    </div>
+    <div class="light-blog-grid">
+      {posts.map((p) => (
+        <div class="reveal">
+          <a class="light-card" href={insightHref(p)}>
+            <div class="light-card-media"><img class="light-card-img" src={p.data.image} srcset={p.data.imageSrcset} sizes="(max-width: 1279px) 100vw, 1063px" alt="" loading="lazy" /></div>
+            <div class="light-card-body">
+              <h3 class="light-card-title">{p.data.title}</h3>
+              <p class={p.id === current ? 'light-card-text light-card-text-current' : 'light-card-text'}>{p.data.excerpt}</p>
+            </div>
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

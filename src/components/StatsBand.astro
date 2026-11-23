@@ -1,0 +1,16 @@
+---
+// Dark band of headline numbers.
+interface Props { stats: { value: string; label: string }[] }
+const { stats } = Astro.props;
+---
+
+<section class="problem stats-band">
+  <div class="stats-grid">
+    {stats.map((s) => (
+      <div class="stat">
+        <p class="stat-value reveal">{s.value}</p>
+        <p class="stat-label reveal">{s.label}</p>
+      </div>
+    ))}
+  </div>
+</section>

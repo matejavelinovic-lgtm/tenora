@@ -1,0 +1,31 @@
+---
+// Grey band: centred heading over a 3-column grid of cards.
+//   plain: off-white inner panel, cards with an eyebrow (pricing model)
+//   icon:  cards on an off-white fill with an icon tile (payments)
+import Icon from './Icon.astro';
+interface Card { eyebrow?: string; icon?: string; title: string; text: string }
+interface Props { eyebrow: string; title: string; text: string; cards: Card[]; variant?: 'plain' | 'icon' }
+const { eyebrow, title, text, cards, variant = 'plain' } = Astro.props;
+---
+
+<section class="band band-grey band-process">
+  <div class={variant === 'plain' ? 'band-inner band-inner-padded process-inner' : 'band-inner band-inner-padded process-inner-icons'}>
+    <div class="section-heading section-heading-center reveal">
+      <p class="eyebrow">{eyebrow}</p>
+      <h2 class="h2 h2-center">{title}</h2>
+      <p class="lead lead-center">{text}</p>
+    </div>
+    <div class="process-grid">
+      {cards.map((c) => (
+        <div class={variant === 'plain' ? 'process-card reveal' : 'process-card process-card-filled reveal'}>
+          <div class="process-card-body">
+            {c.eyebrow && <p class="eyebrow">{c.eyebrow}</p>}
+            {c.icon && <Icon name={c.icon} class="process-card-icon" />}
+            <h3 class="process-card-title">{c.title}</h3>
+            <p class="process-card-text">{c.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

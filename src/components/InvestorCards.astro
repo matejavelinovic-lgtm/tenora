@@ -1,0 +1,32 @@
+---
+// Dark band: centred heading over two investor cards (name or logo, text, link).
+interface Investor { name?: string; logo?: string; text: string; href: string }
+interface Props { eyebrow: string; title: string; text: string; investors: Investor[] }
+const { eyebrow, title, text, investors } = Astro.props;
+---
+
+<section class="lifecycle investors">
+  <div class="dark-cover"><div class="dark-cover-globe"></div></div>
+  <div class="lifecycle-inner">
+    <div class="section-heading section-heading-center reveal">
+      <p class="eyebrow">{eyebrow}</p>
+      <h2 class="h2 h2-light">{title}</h2>
+      <p class="lead lead-light lead-center">{text}</p>
+    </div>
+    <div class="investor-grid">
+      {investors.map((inv) => (
+        <div class="investor-card reveal">
+          <div class="investor-body">
+            <div class={inv.name ? undefined : 'investor-logo-wrap'}>
+              <div class="investor-name-box">
+                {inv.name ? <h3 class="investor-name">{inv.name}</h3> : <img class="investor-logo" src={inv.logo} alt="Fexco" width="166" />}
+              </div>
+              <p class="investor-text">{inv.text}</p>
+            </div>
+          </div>
+          <a class="btn btn-outline investor-btn" href={inv.href}>Learn More</a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

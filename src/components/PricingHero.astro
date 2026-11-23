@@ -1,0 +1,48 @@
+---
+// Dark hero with a centred title and three module/pricing cards.
+import Icon from './Icon.astro';
+interface Plan {
+  eyebrow: string; name: string; nameBold?: string; pro?: boolean; text: string; muted?: boolean;
+  cta: string; href: string; intro?: string; features: string[];
+}
+interface Props { title: string; accent: string; text: string; plans: Plan[] }
+const { title, accent, text, plans } = Astro.props;
+---
+
+<section class="pricing-hero">
+  <div class="pricing-hero-container">
+    <div class="pricing-hero-inner">
+      <div class="pricing-hero-grid">
+        <div class="pricing-hero-heading reveal">
+          <h1 class="pricing-hero-title">{title} <span class="pricing-hero-accent">{accent}</span></h1>
+          <p class="pricing-hero-lead">{text}</p>
+        </div>
+        <div class="plan-grid reveal">
+          {plans.map((p) => (
+            <div class="plan-card">
+              <div class="plan-head">
+                <p class="eyebrow">{p.eyebrow}</p>
+                {p.pro ? (
+                  <div class="plan-name-row">
+                    <h2 class="plan-name">{p.name}</h2>
+                    <img class="plan-badge" src="/assets/68e8df779eef27fc61454bcd_pro_badge.svg" alt="Pro" width="49" height="32" />
+                  </div>
+                ) : (
+                  <h2 class="plan-name">{p.name}{p.nameBold && <> {p.nameBold}</>}</h2>
+                )}
+                <p class="plan-text" set:html={p.text} />
+              </div>
+              <div class="plan-actions"><a class="btn btn-primary plan-btn" href={p.href}>{p.cta}</a></div>
+              <div class="plan-features">
+                {p.intro && <div class="plan-feature"><p class="plan-intro">{p.intro}</p></div>}
+                {p.features.map((f) => (
+                  <div class="plan-feature"><Icon name="i-b8147a63" class="compare-tick" /><p class="plan-feature-text">{f}</p></div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

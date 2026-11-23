@@ -1,0 +1,59 @@
+---
+// /insights — the featured post as a wide card, then every listed post in a grid.
+import Layout from '../../layouts/Layout.astro';
+import Icon from '../../components/Icon.astro';
+import { getInsights, insightHref } from '../../lib/insights';
+
+const posts = await getInsights();
+const featured = posts.find((p) => p.data.featured);
+const grid = posts.filter((p) => p.data.listed && p !== featured);
+---
+
+<Layout theme="light" tight banner={false} title="Insights | Tenora">
+  <section class="insights">
+    <div class="insights-inner">
+      <div class="insights-wrap">
+        <div class="insights-top">
+          <h1 class="insights-title reveal">Insights</h1>
+          {featured && (
+            <div class="insights-featured">
+              <div class="insights-featured-item">
+                <a class="insights-card insights-card-wide" href={insightHref(featured)}>
+                  <div class="insights-card-media insights-card-media-wide">
+                    <img class="insights-card-img" src={featured.data.image} srcset={featured.data.imageSrcset} sizes="(max-width: 1279px) 100vw, 1062px" alt="" loading="lazy" />
+                  </div>
+                  <div class="insights-card-body insights-card-body-wide">
+                    <div class="insights-card-copy">
+                      <h2 class="insights-card-label">FEATURED</h2>
+                      <div class="insights-card-title insights-card-title-wide">{featured.data.title}</div>
+                      <p class="insights-card-text">{featured.data.excerpt}</p>
+                    </div>
+                    <div class="insights-card-more"><div>Read more</div><Icon name="i-59b60e77" class="insights-card-icon" /></div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          )}
+        </div>
+        <div class="insights-grid reveal">
+          {grid.map((p) => (
+            <div class="insights-item">
+              <a class="insights-card" href={insightHref(p)}>
+                <div class="insights-card-media">
+                  <img class="insights-card-img" src={p.data.image} srcset={p.data.imageSrcset} sizes="100vw" alt="" loading="lazy" />
+                </div>
+                <div class="insights-card-body">
+                  <div class="insights-card-copy">
+                    <div class="insights-card-title">{p.data.title}</div>
+                    <p class="insights-card-text">{p.data.excerpt}</p>
+                  </div>
+                  <div class="insights-card-more"><div>Read more</div><Icon name="i-59b60e77" class="insights-card-icon" /></div>
+                </div>
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,59 @@
+---
+// White section: centred heading over a feature comparison of the free Lite
+// tool and the full Trade Analyser (Pro column tinted).
+import Icon from './Icon.astro';
+// tight: 12px vertical cell padding on mobile (as the original's first rows).
+interface Row { label: string; lite: boolean; tight?: boolean }
+interface Props { eyebrow: string; title: string; text: string; rows: Row[] }
+const { eyebrow, title, text, rows } = Astro.props;
+---
+
+<section class="compare">
+  <div class="compare-inner">
+    <div class="compare-heading">
+      <div class="compare-heading-top">
+        <p class="eyebrow compare-eyebrow">{eyebrow}</p>
+        <h2 class="compare-title">{title}</h2>
+      </div>
+      <p class="feature-alt-text compare-lead">{text}</p>
+    </div>
+    <div class="compare-scroll">
+      <div class="compare-width" role="table">
+        <div class="compare-head">
+          <div class="compare-row" role="row">
+            <div class="compare-header compare-header-left reveal" role="columnheader"></div>
+            <div class="compare-header compare-header-plan reveal" role="columnheader">
+              <p class="compare-tag">Free</p>
+              <h3 class="compare-plan">Trade Analyser <strong>Lite</strong></h3>
+              <a class="btn compare-btn-outline" href="/trade-analyser-lite">Try Now</a>
+            </div>
+            <div class="compare-header compare-header-plan reveal" role="columnheader">
+              <p class="compare-tag">30-day free trial</p>
+              <div class="compare-pro">
+                <h3 class="compare-plan compare-plan-pro">Trade Analyser</h3>
+                <div class="compare-badge"><img class="compare-badge-img" src="/assets/68e8df779eef27fc61454bcd_pro_badge.svg" alt="Pro" width="49" height="32" /></div>
+              </div>
+              <a class="btn btn-primary" href="/start-free-trial">Start Free Trial</a>
+            </div>
+          </div>
+        </div>
+        <div class="compare-body">
+          {rows.map((r, i) => (
+            <>
+              {i > 0 && <div class="compare-divider"></div>}
+              <div class="compare-row" role="row">
+                <div class={r.tight ? 'compare-cell compare-cell-title compare-cell-title-first reveal' : 'compare-cell compare-cell-title reveal'} role="rowheader"><h4 class="compare-label">{r.label}</h4></div>
+                <div class="compare-cell reveal" role="cell">
+                  {r.lite
+                    ? <Icon name="i-b8147a63" class="compare-tick" />
+                    : <Icon name="i-f2bac4bc" class="compare-cross" />}
+                </div>
+                <div class="compare-cell compare-cell-filled reveal" role="cell"><Icon name="i-b8147a63" class="compare-tick" /></div>
+              </div>
+            </>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

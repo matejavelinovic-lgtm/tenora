@@ -1,0 +1,60 @@
+---
+// Dark band: centred heading, four numbered steps either side of a phone
+// mockup on a soft circle. Step text may contain <br />.
+// Steps show a number, or an icon when `icon` is given. `globe` swaps the
+// phone mockup for the globe on a green circle.
+interface Step { title: string; text: string; icon?: string }
+interface Props {
+  eyebrow: string; title: string; text: string;
+  steps: [Step, Step, Step, Step];
+  mockup?: string; mockupSrcset?: string; mockupAlt?: string; globe?: boolean;
+}
+import Icon from './Icon.astro';
+const { eyebrow, title, text, steps, mockup, mockupSrcset, mockupAlt = '', globe = false } = Astro.props;
+const columns = [steps.slice(0, 2), steps.slice(2, 4)];
+---
+
+<section class="lifecycle">
+  <div class="lifecycle-inner">
+    <div class="section-heading section-heading-center reveal">
+      <p class="eyebrow">{eyebrow}</p>
+      <h2 class="h2 h2-light h2-center">{title}</h2>
+      <p class="lifecycle-lead">{text}</p>
+    </div>
+    <div class="lifecycle-main">
+      {columns.map((col, c) => (
+        <>
+          <div class="lifecycle-column">
+            {col.map((s, i) => (
+              <>
+                {i === 1 && <Icon name="i-d8801eab" class="lifecycle-divider reveal" />}
+                <div class="lifecycle-step reveal">
+                  {s.icon
+                    ? <Icon name={s.icon} class="lifecycle-icon" />
+                    : <div class="lifecycle-number"><span class="lifecycle-number-text">{c * 2 + i + 1}</span></div>}
+                  <div class="lifecycle-copy">
+                    <p class="lifecycle-step-title">{s.title}</p>
+                    <p class="lifecycle-step-text" set:html={s.text} />
+                  </div>
+                </div>
+              </>
+            ))}
+          </div>
+          {c === 0 && (
+            globe ? (
+            <div class="lifecycle-mockup">
+              <img class="lifecycle-mockup-bg lifecycle-mockup-bg-green" src="/assets/69df6b45820c765256a65401_circle.png" alt="" loading="lazy" />
+              <div class="lifecycle-globe"><div class="dark-cover-globe"></div></div>
+            </div>
+            ) : (
+            <div class="lifecycle-mockup">
+              <img class="lifecycle-mockup-img" src={mockup} srcset={mockupSrcset} sizes={mockupSrcset ? "(max-width: 767px) 100vw, 540px" : undefined} alt={mockupAlt} loading="lazy" />
+              <img class="lifecycle-mockup-bg" src="/assets/69df6b45820c765256a65401_circle.png" srcset="/assets/69df6b45820c765256a65401_circle-p-500.png 500w, /assets/69df6b45820c765256a65401_circle.png 540w" sizes="(max-width: 540px) 100vw, 540px" alt="" loading="lazy" />
+            </div>
+            )
+          )}
+        </>
+      ))}
+    </div>
+  </div>
+</section>

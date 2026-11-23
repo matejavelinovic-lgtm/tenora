@@ -1,0 +1,36 @@
+---
+// Dark band: heading on the left, cycling list of points on the right.
+// `title` may contain <br />.
+interface Props { eyebrow: string; title: string; items: string[] }
+const { eyebrow, title, items } = Astro.props;
+---
+
+<section class="problem">
+  <div class="problem-grid">
+    <div class="problem-heading reveal">
+      <p class="eyebrow">{eyebrow}</p>
+      <h2 class="problem-title" set:html={title} />
+    </div>
+    <div class="problem-list reveal" data-fidelity-mask data-ticker>
+      {items.map((p, i) => <p class="problem-item" style={`--i:${i}`}>{p}</p>)}
+      <div class="problem-fade problem-fade-top"></div>
+      <div class="problem-fade problem-fade-bottom"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Same sizing as the original ticker: the list is as tall as one row per
+  // item, where a row is the first item's height plus 20px. Items stack at
+  // that pitch and the highlight cycles through them (CSS animation).
+  const fit = (list: HTMLElement) => {
+    const items = [...list.querySelectorAll<HTMLElement>('.problem-item')];
+    if (!items.length) return;
+    const pitch = items[0].offsetHeight + 20;
+    list.style.height = `${items.length * pitch}px`;
+    items.forEach((it, i) => { it.style.top = `${10 + i * pitch}px`; });
+  };
+  const lists = [...document.querySelectorAll<HTMLElement>('[data-ticker]')];
+  lists.forEach(fit);
+  addEventListener('resize', () => lists.forEach(fit));
+</script>

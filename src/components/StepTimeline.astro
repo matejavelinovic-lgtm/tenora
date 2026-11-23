@@ -1,0 +1,39 @@
+---
+// Dark band: sticky heading + image on the left, large numbered step cards
+// on a rail to the right (trade analyser "how it works").
+interface Step { eyebrow: string; title: string; text: string }
+interface Props { eyebrow: string; title: string; text: string; img: string; srcset?: string; alt: string; steps: Step[] }
+const { eyebrow, title, text, img, srcset, alt, steps } = Astro.props;
+---
+
+<section class="timeline">
+  <div class="timeline-inner">
+    <div class="timeline-layout">
+      <div class="timeline-aside reveal">
+        <div class="timeline-sticky">
+          <div class="section-heading reveal">
+            <p class="eyebrow">{eyebrow}</p>
+            <h2 class="h2 h2-light">{title}</h2>
+            <p class="lead lead-light">{text}</p>
+          </div>
+          <img class="step-timeline-img" src={img} srcset={srcset} sizes={srcset ? '100vw' : undefined} alt={alt} loading="lazy" />
+        </div>
+      </div>
+      <div class="timeline-track reveal">
+        <div class="timeline-rail"></div>
+        <div class="timeline-cards">
+          {steps.map((s, i) => (
+            <div class="step-glass">
+              <p class="eyebrow">{s.eyebrow}</p>
+              <div class="step-glass-copy">
+                <h3 class="glass-card-title">{s.title}</h3>
+                <p class="glass-card-text">{s.text}</p>
+              </div>
+              <div class="step-glass-number" aria-hidden="true">{i + 1}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

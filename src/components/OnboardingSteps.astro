@@ -1,0 +1,27 @@
+---
+// White band: centred heading over four numbered step cards.
+interface Step { title: string; text: string }
+interface Props { eyebrow: string; title: string; text: string; steps: Step[] }
+const { eyebrow, title, text, steps } = Astro.props;
+---
+
+<section class="band band-light">
+  <div class="band-inner band-inner-padded">
+    <div class="section-heading section-heading-center reveal">
+      <p class="eyebrow">{eyebrow}</p>
+      <h2 class="h2 h2-center">{title}</h2>
+      <p class="lead lead-center">{text}</p>
+    </div>
+    <div class="steps-grid">
+      {steps.map((s, i) => (
+        <div class="step-card reveal">
+          <div class="lifecycle-number"><span class="lifecycle-number-text">{i + 1}</span></div>
+          <div class="step-card-copy">
+            <h3 class="step-card-title">{s.title}</h3>
+            <p class="feature-alt-text">{s.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,36 @@
+---
+// White band: centred heading with a button, then three numbered cards with
+// a screenshot each. Card text may contain <br />. `tight` puts the text
+// inside the card header (no 16px gap above it), as some original cards do.
+interface Card { title: string; text: string; img: string; srcset?: string; alt: string; tight?: boolean }
+interface Props { eyebrow: string; title: string; text: string; cta?: string; href?: string; cards: Card[] }
+const { eyebrow, title, text, cta, href, cards } = Astro.props;
+---
+
+<section class="band band-white">
+  <div class="band-inner band-inner-padded">
+    <div class="section-heading section-heading-center reveal">
+      <p class="eyebrow">{eyebrow}</p>
+      <h2 class="h2 h2-center">{title}</h2>
+      <p class="lead lead-center" set:html={text} />
+      {cta && <a class="btn btn-primary" href={href}>{cta}</a>}
+    </div>
+    <div class="stage-grid reveal-group">
+      {cards.map((c, i) => (
+        <div class="stage-card reveal">
+          <div class="stage-card-body">
+            <div class="stage-card-head">
+              <div class="lifecycle-number stage-card-number"><span class="lifecycle-number-text">{i + 1}</span></div>
+              <h3 class="stage-card-title-sm">{c.title}</h3>
+              {c.tight && <p class="stage-card-text" set:html={c.text} />}
+            </div>
+            {!c.tight && <p class="stage-card-text" set:html={c.text} />}
+            <div class="stage-card-media">
+              <img class="stage-card-img" src={c.img} srcset={c.srcset} sizes={c.srcset ? '100vw' : undefined} alt={c.alt} loading="lazy" />
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

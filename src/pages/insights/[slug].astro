@@ -1,0 +1,51 @@
+---
+// One page per insight, from src/content/insights/<slug>.md: title, lead,
+// date and author, hero image, the Markdown body; then the CTA band and the
+// three latest posts.
+import { render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import DarkCta from '../../components/DarkCta.astro';
+import LightBlog from '../../components/LightBlog.astro';
+import { getInsights, formatDate } from '../../lib/insights';
+
+export async function getStaticPaths() {
+  const posts = await getInsights();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { title, excerpt, date, author, image, imageSrcset, schema } = post.data;
+const { Content } = await render(post);
+---
+
+<Layout theme="light" banner={false} title={`${title} | Insights`} description={excerpt}>
+  <section class="post">
+    <div class="post-inner">
+      <div class="post-container">
+        <div class="post-column">
+          <div class="post-head">
+            <h1 class="post-title">{title}</h1>
+            <p class="post-lead">{excerpt}</p>
+            <div class="post-divider"></div>
+            <div class="post-meta">
+              <div class="post-meta-item">{formatDate(date)}</div>
+              <div class="post-meta-item">{author}</div>
+            </div>
+          </div>
+          <div class="post-image-box">
+            <img class="post-image" src={image} srcset={imageSrcset} sizes="100vw" alt="" />
+          </div>
+          <div class="post-main">
+            <div class="post-body"><Content /></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <DarkCta title="Ready to" accent="take control?" text="Take the first step towards smarter, more transparent FX decisions." cta="Get In Touch" href="/contact-us" />
+
+  <LightBlog current={post.id} />
+
+  {schema && <script type="application/ld+json" set:html={schema} />}
+</Layout>

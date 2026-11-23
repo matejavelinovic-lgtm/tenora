@@ -1,0 +1,13 @@
+---
+// Empty dark band: zero height on desktop, 100px/60px of top padding below
+// 992px. `map` shows the faint world-map pattern at its right, as the
+// original does on some pages.
+interface Props { map?: boolean }
+const { map = false } = Astro.props;
+const base = '/assets/69c550d1a57605d8cd8c7886_World-Map-Pattern';
+const set = [500, 800, 1080].map((v) => `${base}-p-${v}.png ${v}w`).join(', ') + `, ${base}.png 1335w`;
+---
+
+<section class="dark-spacer" aria-hidden="true">
+  {map && <div class="dark-cover"><img class="dark-cover-img" src={`${base}.png`} srcset={set} sizes="100vw" alt="" loading="lazy" /></div>}
+</section>

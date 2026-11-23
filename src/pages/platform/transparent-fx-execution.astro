@@ -1,0 +1,75 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CenterHero from '../../components/CenterHero.astro';
+import StatsBand from '../../components/StatsBand.astro';
+import NumberCards from '../../components/NumberCards.astro';
+import PricingTable from '../../components/PricingTable.astro';
+import ProcessCards from '../../components/ProcessCards.astro';
+import FeatureRow from '../../components/FeatureRow.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import BlogTeaser from '../../components/BlogTeaser.astro';
+import { img } from '../../lib/img';
+
+const frame = (base: string) => img(base, [500, 800, 1080, 1600], 1796);
+---
+
+<Layout title="Transparent FX Pricing & Trade Execution | Tenora"
+  description="Deep institutional liquidity, fixed spreads and transparent execution all within a governed, auditable workflow.">
+
+  <CenterHero eyebrow="EXECUTE TRANSPARENTLY" title="Competitive pricing on every trade"
+    text="Deep institutional liquidity, fixed spreads and transparent execution all within a governed, auditable workflow.<br />"
+    cta="Book A call" href="/book-a-call"
+    {...img('6a31302feccc554e793b4c2f_Bank-execution-diagram', [500, 800], 1262)}
+    alt="Tenora transparent FX execution diagram" />
+
+  <StatsBand stats={[
+    { value: '137', label: 'Currencies' },
+    { value: '£0', label: 'Hidden cost' },
+    { value: '1', label: 'Platform' },
+    { value: '100%', label: 'Auditable' },
+  ]} />
+
+  <NumberCards eyebrow="FULL CONTROL" title="Benchmark your bank"
+    text="Most businesses assume their bank is giving them a competitive rate. Tenora lets you verify that in real time. Check your bank's quotes alongside our institutional liquidity network simultaneously - every quote ranked by competitiveness, with no hidden routing and no preferred counterparty. <br />You see everything. You decide where to trade."
+    cta="Get started" href="/contact-us"
+    cards={[
+      { title: 'All participants quote simultaneously', text: 'Your banks and our liquidity providers receive a live quote request at the same moment.', ...frame('69e105cb871c54e49d4c9011_Frame-2147225757'), alt: 'Tenora quote request sent to banks and liquidity providers at the same moment' },
+      { tight: true, title: 'You see every quote, ranked', text: '<br />No hidden routing, no preferred counterparty, no conflict of interest.', ...frame('69e105cb02ba42ae6b3fca8e_Frame-2147225758'), alt: 'Tenora quotes ranked by competitiveness' },
+      { tight: true, title: 'You decide where to trade', text: '<br />Select the best price, confirm execution, and your fixed spread is instantly applied.', ...frame('69e105f70b88812600f6373b_Frame-2147225759'), alt: 'Tenora trade execution confirmation' },
+    ]} />
+
+  <PricingTable eyebrow="The full stack" title="Our product suite"
+    text="All with fixed, pre-agreed spreads and complete auditability."
+    labelHead={{ name: 'Spot', text: 'When you know the exact date<br />of your payments or receipts.' }}
+    rows={['Guaranteed protection rate', 'Transparent, pre-agreed pricing', 'Full audit trail', 'Flexible drawdowns', 'Potential to benefit from improved rate at expiry']}
+    products={[
+      { name: 'Spot', text: 'Instant conversion with same-day settlement', marks: [true, true, true, false, false] },
+      { name: 'Fixed', text: 'Fix a rate to deliver on an exact future value date', marks: [true, true, true, false, false] },
+      { name: 'Flexible', text: 'Fix a rate with the freedom to draw-down fully or partially before the value date', marks: [true, true, true, true, false] },
+      { name: 'Dynamic', text: 'Fix your protection rate but have the ability to take a better rate if the market moved in your favour', marks: [true, true, true, false, true] },
+    ]} />
+
+  <ProcessCards eyebrow="OUR PRICING MODEL" title="The end of opaque FX pricing"
+    text="Your spread is locked in before you trade. Every execution is logged. Every cost is visible. No surprises before, during, or after settlement."
+    cards={[
+      { eyebrow: 'PRE-TRADE', title: 'Spread agreed in advance', text: 'Before a single trade is executed, your spread is defined and documented. The rate you see is the rate you pay, with zero markup applied between quote and settlement.' },
+      { eyebrow: 'EXECUTION', title: 'Live price transparency', text: 'The platform surfaces the underlying interbank rate alongside your agreed spread in real time. You always know where the market is and exactly what your cost is. No guesswork required.' },
+      { eyebrow: 'POST-TRADE', title: 'Audit every execution', text: 'Log every trade with timestamps, rates, spreads and counterparty detail, providing a complete, exportable audit trail for treasury, finance and compliance teams.' },
+    ]} />
+
+  <FeatureRow tone="light" heading="alt" eyebrow="execution audit" title="Every cost disclosed. Every time."
+    text="Before each trade execution, Tenora's Trade Analyser produces a complete breakdown of the costs involved. <br /><br />✓ Spot rate, forward points and counterparty charge itemised per trade<br /><br />✓ All-in rate and notional cost displayed<br /><br />✓ Counterparty charge rated - Excellent, Good, Average, Above Average, High<br /><br />✓ Instantly uploaded to your Trade Analyser blotter"
+    {...img('69e0da286aca5f631ccf2eba_4.6', [500], 570)}
+    alt="Tenora Trade Analyser showing complete cost breakdown — spot rate, forward points charge, counterparty spread and your net rate all itemised before every execution" />
+
+  <FeatureRow tone="white" eyebrow="your specialist" title="Real expertise when you need it."
+    text="Every Tenora client has a named Treasury Strategist to assist them. Not a helpdesk. Not a chatbot. A person who knows your business.<br /><br />You can speak to your Treasury Strategist whenever you need guidance on hedging policies, managing exposure or navigating market volatility. As your business grows, so does their understanding of it."
+    cta="Speak to an expert" href="/book-a-call"
+    {...img('69e24d9c14c2e21ae54118d5_Expertise', [500, 800, 1080], 1377)}
+    alt="Tenora Treasury strategist" />
+
+  <CtaBand nested={false} title="Ready to start trading with transparency?"
+    text="Talk to one of our team about an audit of your existing trades to ensure you are getting the best price." cta="Learn How" />
+
+  <BlogTeaser title="Keep up to date" spacer={false} card="glass" />
+</Layout>

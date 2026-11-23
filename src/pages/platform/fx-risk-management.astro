@@ -1,0 +1,91 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SplitHero from '../../components/SplitHero.astro';
+import ProblemBand from '../../components/ProblemBand.astro';
+import FeatureRow from '../../components/FeatureRow.astro';
+import Lifecycle from '../../components/Lifecycle.astro';
+import FeatureGrid from '../../components/FeatureGrid.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import BlogTeaser from '../../components/BlogTeaser.astro';
+import { asset, img, srcset } from '../../lib/img';
+
+const canvas = (base: string, full: number) => img(base, [500, 800, 1080], full);
+---
+
+<Layout title="FX Hedging Policy & Risk Governance | Tenora"
+  description="A centralised environment to model, execute and evidence FX hedging decisions with full policy discipline built in from the start.">
+
+  <SplitHero eyebrow="one connected platform" title="Full visibility and total governance"
+    text="A centralised environment to model, execute and evidence FX hedging decisions with full policy discipline built in from the start."
+    cta="Speak to an expert" href="/book-a-call"
+    img={asset('6a312f6e6f926d9d413325d7_FX-Risk-dashboard-expanded.png')}
+    srcset={srcset('6a312f6e6f926d9d413325d7_FX-Risk-dashboard-expanded', [500, 800, 1080], 1712)}
+    alt="Tenora FX risk dashboard" />
+
+  <ProblemBand eyebrow="EXECUTIVE OVERSIGHT" title="The FX reporting that your board needs"
+    items={['Real time mark-to-market valuations', 'Cash-flow impact reporting', 'Consistent decision standards across entities', 'Centralised policy adherence tracking']} />
+
+  <FeatureRow tone="white" eyebrow="RISK GOVERNANCE" title="See the risk. Prove you managed it."
+    text="Most finance teams know their FX exposures. Few can demonstrate how hedging decisions are made, approved and measured over time. <br />‍<br />By bringing exposure, modelling and policy discipline into a single structured environment, currency decisions are consistent, defensible and auditable."
+    img={asset('6a312dfb6624674e78e40358_Tenora-execute-at-best-price-diagram.png')}
+    alt="Diagram showing Tenora exposure, modelling and policy into a single structured environment so currency decisions are consistent, defensible and auditable" />
+
+  <Lifecycle eyebrow="END-TO-END RISK MANAGEMENT" title="Structured across the FX risk lifecycle"
+    text="FX Orchestration gives businesses full control and clarity at every stage of the trade process, with a seamless, end-to-end approach that makes FX risk management transparent, strategic, and effective."
+    steps={[
+      { title: 'Set your hedging policy', text: 'Define the rules that govern when and how much to hedge. <br /><br />Start from an off-the-shelf template or build your own and refine as it evolves.' },
+      { title: 'Stress test scenarios', text: 'Simulate rate movements and test hedge strategies before committing capital.<br />‍<br />Compare risk reduction against cost and<br />timing outcomes.<br />' },
+      { title: 'Execute with transparency', text: 'Place spot and forward trades within a governed workflow. <br /><br />Approval pathways, role-based permissions and pricing comparisons - all in one place.' },
+      { title: 'Measure performance', text: 'Track outcomes against your policy through structured reporting and full audit trails. <br /><br />Real-time mark-to-market valuations across your entire portfolio.<br />' },
+    ]}
+    mockup={asset('69e1f1a07561ac9139fa5251_exposure_visibility.png')}
+    mockupSrcset={srcset('69e1f1a07561ac9139fa5251_exposure_visibility', [500], 796)}
+    mockupAlt="Tenora Exposure Visibility screen, with scenario testing, policy governance and execution below. " />
+
+  <FeatureRow tone="white" heading="alt" eyebrow="no blind spots" title="Every trade. <br />Every counterparty.<br />One view."
+    text="You can’t manage what you can’t see. Get the full picture in real-time and in one place. Run mark-to-market reports on your chosen date for year-end accounting."
+    {...canvas('68ea522eb9c5157f8b7e4953_product_canvas', 1236)} alt="Tenora trade blotter giving finance teams one view of every trade and counterparty" />
+
+  <FeatureRow tone="grey" container="wide" heading="alt" eyebrow="hedging policy" title="Your policy built into every decision."
+    text="Turn strategy into action with a policy that reflects your business. Upload your own, start from a template, or work with your Treasury Risk Strategist to build something bespoke."
+    {...canvas('68ea522ecf2c14f501254cbb_product_canvas-1', 1258)} alt="Tenora hedging policy screen" />
+
+  <FeatureRow tone="white" heading="alt" eyebrow="scenario testing" title="Know the outcome before you commit."
+    text={'Instant "what if" modelling across rate scenarios, hedging products and timing. So when you act, you\'re acting on insight - not instinct.'}
+    {...canvas('68ecb50e59cfb7b513fe7ae0_product_canvas4', 1261)} alt="Tenora scenario analysis tool" />
+
+  <FeatureRow tone="grey" container="wide" heading="alt" eyebrow="active monitoring" title="Watch your policy perform in real time."
+    text="See the cash-flow impact of FX market moves as they happen. Track, measure and stay ahead before it becomes a problem."
+    {...canvas('68ea522e8cd07e228709df82_product_canvas-3', 1236)} alt="Tenora active monitoring" />
+
+  <section class="band band-white" aria-hidden="true"></section>
+
+  <FeatureRow tone="white" eyebrow="price discovery" title="Execution with competitive transparency."
+    text="Every trade sits within a controlled environment with live pricing comparisons, clear outcome visibility and a full audit trail. Counterparty performance is tracked and benchmarked over time, ensuring it is structured and defensible."
+    cta="Find out more" href="/platform/transparent-fx-execution"
+    {...img('69e0fb3b58c876b812211b90_Frame-2147225755', [500, 800, 1080, 1600], 1800)} alt="Tenora transparent execution" />
+
+  <FeatureGrid eyebrow="AN EASY WAY TO MANAGE" title="Built for organisations managing complexity."
+    tiles={[
+      { icon: 'i-755bbe2b', title: 'Multi-entity consolidation', text: 'Aggregate FX exposures across all entities, currencies and counterparties into a single, real-time view.' },
+      { icon: 'i-7b64bb04', title: 'Pre-trade impact modelling', text: 'See exactly what a hedge will do to your numbers before you place it.' },
+      { icon: 'i-d7f500cb', title: 'Policy-driven workflow controls', text: 'Coverage targets, approval thresholds and role-based permissions embedded directly into the platform.' },
+      { icon: 'i-7bc1cec2', title: 'Centralised decision history', text: 'Every hedge, approval and rate interaction logged in one place. A clear, auditable record from day one.' },
+      { icon: 'i-0bc6bbbb', title: 'CFO-ready dashboards', text: 'Structured reporting that gives senior stakeholders the visibility they need.' },
+      { icon: 'i-6b898720', title: 'Pre-trade scenario analysis', text: 'Stress-test exposures against rate moves before executing. Understand the downside before it materialises.' },
+    ]} />
+
+  <FeatureRow tone="white" container="flush" reverse eyebrow="IMPLEMENTATION" title="Quick, easy and supported setup."
+    text="We work alongside your finance team to set up workflows, configure your policies and make sure the platform works the way your business does."
+    cta="book a demo" href="/book-a-call"
+    {...img('69e0f9adf046bb0f5e1700c1_Frame-2147225754', [500, 800, 1080, 1600], 1800)} alt="Tenora implementation support" />
+
+  <FeatureRow tone="grey" container="wide" reverse={false} eyebrow="EXPERT SUPPORT" title="Real expertise when you need it."
+    text="Behind the platform is a team of experienced FX professionals who understand treasury frameworks, policy design and governance. When you need guidance, it's there."
+    cta="speak to an expert" href="/book-a-call"
+    {...img('69e24d9c14c2e21ae54118d5_Expertise', [500, 800, 1080], 1377)} alt="Tenora expert FX support - FX charts showing forward curve and market data" />
+
+  <CtaBand nested={false} title="Ready to govern your FX?" text="Bring structure, visibility and confidence to every hedging decision your team makes." cta="Book a demo" />
+
+  <BlogTeaser title="Keep up to date" spacer={false} card="glass" />
+</Layout>

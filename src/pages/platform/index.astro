@@ -1,0 +1,32 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PricingHero from '../../components/PricingHero.astro';
+import FeatureRow from '../../components/FeatureRow.astro';
+import DarkCta from '../../components/DarkCta.astro';
+import LightBlog from '../../components/LightBlog.astro';
+import { asset } from '../../lib/img';
+---
+
+<Layout theme="light" title="Platform | FX Risk Management & Execution | Tenora"
+  description="TruHedge is a flexible, web-based platform that adapts seamlessly to the way your business manages FX risk.">
+
+  <PricingHero title="Modules designed around" accent="your business"
+    text="TruHedge is a flexible, web-based platform that adapts seamlessly to the way your business manages FX risk."
+    plans={[
+      { eyebrow: 'Free on Website', name: 'Trade Analyser', nameBold: 'Lite', text: 'Quick, reliable FX insight to check trade costs and understand your risk.<br />‍', cta: 'Try Now For Free', href: '/trade-analyser-lite',
+        features: ['Analyse live trades', 'Analyse executed trades', 'Check counterparty charges', 'Analyse forward points', 'Estimate impact of not hedging', 'No sign up required'] },
+      { eyebrow: 'TRUHEDGE MODULE', name: 'Trade Analyser', pro: true, text: 'For treasury teams that want deeper visibility — track, compare, and report on hedging costs over time.', cta: 'Start Free Trial', href: '/start-free-trial',
+        intro: 'Everything in Trade Analyser Lite plus:', features: ['Secure login', 'Save and store trade history', 'Compare counterparty charges over time'] },
+      { eyebrow: 'TRUHEDGE MODULE', name: 'FX Risk Management', text: 'Tailored FX intelligence for finance teams — complete control and clarity in one powerful platform.', cta: 'Start Free Trial', href: '/start-free-trial',
+        intro: 'Everything in Trade Analyser Pro plus:', features: ['Access to Treasury Risk & Strategy Team', 'Centralise FX exposures and hedges across all counterparties', 'Create and manage a tailored FX hedging policy', 'Input budget & target FX rates', 'Ensure policy approved trades are identified and seamlessly added to the Hedge Cart', 'Ensure governance and auditability across your hedging portfolio', 'Scenario-test the impact of hitting or missing set targets'] },
+    ]} />
+
+  <FeatureRow tone="white" container="inset" reverse={false} heading="alt" smallTitle={false} eyebrow="NO HIDDEN COSTS" title="Just need FX execution? No problem"
+    text="Enjoy fast, transparent trade execution that complements your wider FX strategy, with or without the TruHedge platform."
+    cta="Apply for Trading Account" href="https://onboarding.paydirect.io/tenora/forms/corporate" ctaStyle="outline"
+    img={asset('68e9201c65f8b912c2654c71_product_canvas.svg')} alt="Tenora trade execution" />
+
+  <DarkCta title="Ready to" accent="take control?" text="Take the first step towards smarter, more transparent FX decisions." cta="Get In Touch" href="/contact-us" />
+
+  <LightBlog />
+</Layout>

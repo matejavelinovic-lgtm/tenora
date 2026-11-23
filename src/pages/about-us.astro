@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AboutHero from '../components/AboutHero.astro';
+import TeamGrid from '../components/TeamGrid.astro';
+import InvestorCards from '../components/InvestorCards.astro';
+import Quote from '../components/Quote.astro';
+import DarkCta from '../components/DarkCta.astro';
+import LightBlog from '../components/LightBlog.astro';
+---
+
+<Layout theme="light" tight title="Empowering Businesses to Take Control of FX | Tenora"
+  description="We’re on a mission to end hidden costs and confusion in FX, and build a more transparent, modern financial future.">
+
+  <AboutHero eyebrow="our Purpose" before="We’re" accent="empowering businesses" after="to take true control of their FX decisions"
+    text="We’re on a mission to end hidden costs and confusion in FX, and build a more transparent, modern financial future where better outcomes are the norm, not the exception." />
+
+  <TeamGrid title="Leadership team"
+    text="With decades of combined experience across FX, fintech, risk and compliance, our leadership team brings deep industry knowledge and proven success." />
+
+  <InvestorCards eyebrow="INSTITUTIONAL BACKING" title="Our Investors"
+    text="Tenora's institutional investors share a long-term view of how treasury infrastructure should be built. Together, their backing funds the next stage of our platform capability, international growth and organisational depth."
+    investors={[
+      { name: 'Macquarie', text: "Macquarie group is an investor in Tenora having led the company's initial funding round  in October 2025.", href: '/insights/tenora-completes-major-funding-round-led-by-macquarie' },
+      { logo: '/assets/6ab29623c0a20b2d4d511729_image-676.svg', text: "Fexco became an investor in September 2026, bringing over 40 years' experience in payments and FX infrastructure.", href: '/insights/fexco-backs-tenora-with-ps7-5m-as-the-uk-fintech-expands-into-corporate-treasury-solutions' },
+    ]} />
+
+  <Quote text="”Tenora’s FCA-authorised EMI licence, combined with its AI-native technology, is distinctive in the market and provides a strong platform for expansion. Macquarie is pleased to support the company as it enters its next phase of growth.”"
+    name="Arturo Alonso" role="Senior Managing Director, Macquarie Group EMEA" />
+
+  <DarkCta title="Ready to" accent="take control?" text="Take the first step towards smarter, more transparent FX decisions." cta="Get In Touch" href="/contact-us" />
+
+  <LightBlog />
+</Layout>

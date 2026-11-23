@@ -1,0 +1,40 @@
+---
+// Dark band: centred heading over a feature × product comparison table.
+// `rows` are the feature labels; each product lists true/false per row.
+import Icon from './Icon.astro';
+interface Product { name: string; text: string; marks: boolean[] }
+interface Props { eyebrow: string; title: string; text: string; labelHead: { name: string; text: string }; rows: string[]; products: Product[] }
+const { eyebrow, title, text, labelHead, rows, products } = Astro.props;
+---
+
+<section class="lifecycle pricing">
+  <div class="lifecycle-inner">
+    <div class="section-heading section-heading-center reveal">
+      <p class="eyebrow">{eyebrow}</p>
+      <h2 class="h2 h2-light h2-center">{title}</h2>
+      <p class="lifecycle-lead">{text}</p>
+    </div>
+    <div class="pricing-table" role="table">
+      <div class="pricing-col" role="rowgroup">
+        <div class="pricing-cell pricing-cell-head pricing-cell-ghost" aria-hidden="true">
+          <div class="pricing-head-title"><Icon name="i-37f1cc21" class="pricing-head-icon" /><p class="pricing-head-name">{labelHead.name}</p></div>
+          <p class="pricing-head-text" set:html={labelHead.text} />
+        </div>
+        {rows.map((r) => <div class="pricing-cell pricing-cell-label" role="rowheader"><p class="pricing-label">{r}</p></div>)}
+      </div>
+      {products.map((p, pi) => (
+        <div class={pi % 2 === 0 ? 'pricing-col pricing-col-product' : 'pricing-col'} role="rowgroup">
+          <div class="pricing-cell pricing-cell-head" role="columnheader">
+            <div class="pricing-head-title"><Icon name="i-37f1cc21" class="pricing-head-icon" /><p class="pricing-head-name">{p.name}</p></div>
+            <p class="pricing-head-text">{p.text}</p>
+          </div>
+          {p.marks.map((m, i) => (
+            <div class="pricing-cell" role="cell">
+              <img class={m ? 'pricing-mark' : 'pricing-mark pricing-mark-no'} src={m ? '/assets/icon-tick-circle.png' : '/assets/icon-cross-circle.png'} alt={m ? `${rows[i]}: yes` : `${rows[i]}: no`} width="32" height="32" />
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

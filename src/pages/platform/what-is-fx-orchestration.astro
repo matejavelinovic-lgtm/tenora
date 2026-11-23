@@ -1,0 +1,63 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import IframeHero from '../../components/IframeHero.astro';
+import Timeline from '../../components/Timeline.astro';
+import ListCards from '../../components/ListCards.astro';
+import Quote from '../../components/Quote.astro';
+import Lifecycle from '../../components/Lifecycle.astro';
+import FeatureRow from '../../components/FeatureRow.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import BlogTeaser from '../../components/BlogTeaser.astro';
+import DarkSpacer from '../../components/DarkSpacer.astro';
+import { asset } from '../../lib/img';
+---
+
+<Layout title="What is FX Orchestration? The Complete Guide for Corporate Treasurers"
+  description="FX Orchestration rebuilds the operating model around how FX actually works, as a single, connected cycle of information and decisions.">
+
+  <IframeHero eyebrow="fx orchestration" title="Fragmentation isn't accidental. It's profitable."
+    text="FX Orchestration rebuilds the operating model around how FX actually works, as a single, connected cycle of information and decisions, not a series of disconnected tasks managed by disconnected providers."
+    cta="Read the white paper" href="/how-fx-orchestration-will-redefine-fx-risk"
+    src="https://cdn.tenora.com/assets/animations/tenora-hero.html" />
+
+  <Timeline eyebrow="THE PROBLEM" title="The FX market is structured around silos. By design."
+    text="Take the first step toward smarter, more transparent FX decisions."
+    cards={[
+      { eyebrow: 'STRUCTURED AROUND SILOS', title: 'Each provider owns one stage', text: 'FX consulting, advisory, execution technology, banks, ERPs and TMS platforms each serve a defined slice of the lifecycle. None is designed, or incentivised, to unify the process end to end.' },
+      { eyebrow: 'OPACITY AS A FEATURE', title: 'Transparency reduces demand for the old model', text: "Greater visibility makes it easy to benchmark execution costs and see exactly what you're being charged. That level of clarity directly threatens the margins built into opaque pricing. The system has little reason to change." },
+      { eyebrow: 'THE HIDDEN COST', title: 'Your finance team pays the price', text: 'No provider is rewarded for solving the whole problem, so no provider does. The responsibility for connecting Pre-Trade, Trade and Post-Trade falls to your finance team - integrating systems, reconciling data and governing decisions across providers that were never designed to work together.' },
+    ]} />
+
+  <ListCards eyebrow="THE FRAMEWORK" title="The FX lifecycle, unified"
+    text="FX Orchestration defines how three stages, Pre-Trade, Trade, and Post-Trade, operate as a single, connected flow. Information from one stage feeds directly into the next, creating a continuous loop of insight, action, and control."
+    cards={[
+      { icon: 'i-7cfb9c05', eyebrow: 'Pre trade', title: 'Decision context', text: 'Where strategy is set and exposures are understood before a single trade is placed.<br />', items: ['Hedging policy creation', 'Exposure forecasting', 'Centralised trade data', 'Scenario analysis', 'Compliance monitoring'] },
+      { icon: 'i-9ea5f71b', eyebrow: 'trade', title: '‍Market action', text: 'Where decisions are executed with full visibility of cost, risk, and policy alignment.<br />', items: ['Transparent pricing', 'Counterparty cost analysis', 'Policy-compliant execution', 'Market risk forecasting', 'Real-time rate access'] },
+      { spaced: true, icon: 'i-64a39757', eyebrow: 'Post trade', title: 'Outcomes & control', text: 'Where results are captured, governance is maintained, and the next cycle begins informed.<br />', items: ['Settlement & payments', 'Governance reporting', 'Audit trail', 'Counterparty spread analysis', 'Cycle restart with full context'] },
+    ]} />
+
+  <section class="band band-white" aria-hidden="true"></section>
+
+  <Quote text={'"FX has always been one process. When you manage it as one, everything becomes clearer, faster, and more controlled."'} name="Tom Alexander" role="Co-founder & Chief Product Officer" />
+
+  <Lifecycle globe eyebrow="WHY IT MATTERS" title="Orchestration isn't a concept. It's a competitive advantage."
+    text="FX Orchestration has direct, measurable consequences for how your treasury team operates — and how your organisation performs in volatile markets."
+    steps={[
+      { icon: 'i-3970f1a7', title: 'Technology is accelerating expectations', text: 'Open banking, AI and automation are reshaping how data moves across organisations. Systems supporting real-time visibility and rapid scenario testing will become the norm.' },
+      { icon: 'i-d7f500cb', title: 'Stakeholders expect transparency', text: 'Boards, auditors, and investors increasingly expect companies to demonstrate how exposures are identified and costs are incurred. Fragmented workflows struggle to provide this clarity.' },
+      { icon: 'i-64a39757', title: 'The market will consolidate toward end-to-end models', text: 'As FX Orchestration matures, fragmented point solutions will lose relevance. Organisations will demand providers that support the entire FX lifecycle, not isolated stages.' },
+      { icon: 'i-9ea5f71b', title: 'Early adopters gain strategic advantage', text: 'Organisations that move toward orchestration make faster decisions, communicate more confidently with stakeholders, and operate with stronger governance. In volatile markets, that advantage compounds quickly.' },
+    ]} />
+
+  <DarkSpacer />
+  <DarkSpacer map />
+
+  <FeatureRow tone="grey" heading="alt" eyebrow="WHITE PAPER" title="How FX Orchestration redefines FX Risk"
+    text="FX Orchestration is more than a concept, it’s a new operating model for managing FX risk as a continuous, connected flow. <br /><br />Our latest whitepaper explores why this shift matters, and how finance teams can move toward orchestration in practice."
+    cta="Read the whitepaper" href="/how-fx-orchestration-will-redefine-fx-risk"
+    img={asset('6981d8e455469097c2ecc78f_whitepaper_.png')} alt="Tenora FX Orchestration white paper" />
+
+  <CtaBand nested={false} eyebrow="working together" title="Ready to see what orchestration looks like?" text="Talk to our team to learn more." />
+
+  <BlogTeaser title="Keep Up To Date" card="glass-filled" />
+</Layout>

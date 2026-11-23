@@ -1,0 +1,78 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CenterHero from '../../components/CenterHero.astro';
+import ProblemBand from '../../components/ProblemBand.astro';
+import OnboardingSteps from '../../components/OnboardingSteps.astro';
+import ProcessCards from '../../components/ProcessCards.astro';
+import FeatureRow from '../../components/FeatureRow.astro';
+import FeatureGrid from '../../components/FeatureGrid.astro';
+import Timeline from '../../components/Timeline.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import BlogTeaser from '../../components/BlogTeaser.astro';
+import { asset, img } from '../../lib/img';
+---
+
+<Layout title="Multi-Currency Accounts & FX Payments | Tenora"
+  description="Named virtual IBANs, free overseas payments and multi-currency balances, all connected to your FX strategy.">
+
+  <CenterHero eyebrow="COLLECT, HOLD & PAY" title="Accounts and payments that work with your FX strategy"
+    text="Named virtual IBANs, free overseas payments and multi-currency balances. All fully connected so your cash flow and hedging strategy finally speak the same language."
+    cta="talk to us" href="/book-a-call" />
+
+  <ProblemBand eyebrow="own named virtual iban accounts" title="Choose your virtual IBAN pre-fix"
+    items={['United Kingdom (GB)', 'Germany (DE)', 'Denmark (DK)', 'Luxembourg (LU)']} />
+
+  <OnboardingSteps eyebrow="HOW IT WORKS" title={" A global business needs global accounts"}
+    text="Open named virtual IBANs in minutes to receive and send funds for your clients, partners or subsidiaries. Manage collections and distributions with full visibility and control from one place."
+    steps={[
+      { title: 'Open accounts', text: 'Activate a named virtual IBAN in your company name in minutes, prefixed to your chosen country through our banking partners.' },
+      { title: 'Collect funds', text: 'Receive payment directly into designated safeguarded accounts, with seamless integration into your FX workflows.' },
+      { title: 'Hold & manage', text: 'Hold funds securely in multiple currencies. Your money sits in segregated accounts in your name with our banking partners, always protected.' },
+      { title: 'Pay out', text: 'Execute fast international payments to any beneficiary at no cost. Manage your trusted beneficiary list, track payments and reconcile everything in one place.' },
+    ]} />
+
+  <ProcessCards variant="icon" eyebrow="faster PAYMENTS" title="Delivery in minutes with no fees"
+    text="Move money faster than the standard next-day window. Pay beneficiaries same-day through our institutional network, directly to where it needs to go."
+    cards={[
+      { icon: 'i-64a39757', title: 'International payments', text: 'Local and cross-border payments from one place. Tap into local markets without sacrificing global reach.' },
+      { icon: 'i-147bb1fc', title: 'Free to send', text: 'We do not charge for your overseas payments, reducing the opportunity cost to doing business overseas.' },
+      { icon: 'i-62c6e938', title: 'Structured controls', text: 'Role-based permissions and payment limits all configured to your internal policies.' },
+      { icon: 'i-cb40cf6c', title: 'Beneficiary Management', text: "Create and manage a trusted beneficiary list. Payments only go where you've approved them to go." },
+      { icon: 'i-821adfb6', title: 'Status updates', text: 'Payment status updates from initiation to settlement.' },
+      { icon: 'i-e407555d', title: 'Account activity oversight', text: 'A complete view of all payment activity to support reconciliation and financial control.' },
+    ]} />
+
+  <FeatureRow tone="light" container="padded" reverse={false} heading="alt" smallTitle eyebrow="fast and reliable" title="Convert and pay same day through our network"
+    text="Pay your beneficiaries same day in 12 currencies, beating the banks' standard settlement times. Move your money faster and for less.<br /><br />‍<br />"
+    img={asset('6a1c793b7dd46cde709c667f_Currencies-square.png')}
+    alt="Tenora same-day payments across 12 currencies" />
+
+  <FeatureGrid eyebrow="connected to your strategy" title="Your accounts and your hedging, finally aligned"
+    text="Most businesses manage payments and FX in separate systems. Our platform connects them. Your multi-currency balances feed directly into your FX risk dashboard, so exposure is always current and every decision is informed."
+    tiles={[
+      { icon: 'i-b0293686', title: 'Hedge currency flows day to day', text: 'Your multi-currency balances feed directly into your FX risk dashboard.' },
+      { icon: 'i-fb5dcd55', title: 'Time trades deliberately', text: 'Hold balances in safeguarded accounts until the rate is right. Scenario modelling and live rates sit alongside your accounts, so you know when to move.' },
+      { icon: 'i-3880b77b', title: 'Align operational cash with your broader hedging strategy', text: 'Every conversion is checked against your hedging policy before execution. Governance is built in - not bolted on.' },
+    ]} />
+
+  <FeatureRow tone="light" container="padded" reverse={false} heading="alt" smallTitle eyebrow="multi-currency accounts" title="Hold balances securely in 24 currencies"
+    text="Access multiple major currency accounts within one centralised structure. Move funds seamlessly between your own accounts to your chosen currency. <br /><br /> ✓ Funds held in safeguarded and segregated accounts with our banks<br /><br /> ✓ Access to your funds for payments and FX<br /><br /> ✓ Reduce friction and unnecessary onboarding with banks<br /><br />‍<br />"
+    {...img('69dfb0f25139f010470bb995_5.3', [500], 505)}
+    alt="Tenora multi-currency accounts" />
+
+  <section class="dark-spacer" aria-hidden="true"></section>
+
+  <Timeline eyebrow="regulated, safeguarded, protected" title="Your money is always where it should be."
+    text="Every penny held with Tenora sits in segregated accounts with our banking partners, fully separate from company assets and protected under FCA regulation."
+    cta="Learn More" href="/contact-us"
+    cards={[
+      { icon: 'i-9ea5f71b', title: 'Regulatory compliance', text: 'Fully licensed and regulated under FCA and European financial services regulations. Built to the highest standards from day one.' },
+      { icon: 'i-83217962', title: 'Segregated funds', text: 'Your funds are held separately from company assets with our banking partners. Protected by structure, not just policy.' },
+      { icon: 'i-439caeae', title: 'Bank-grade security', text: 'Advanced encryption, multi-factor authentication and continuous monitoring — 24 hours a day, every day.' },
+    ]} />
+
+  <CtaBand nested={false} eyebrow="start trading" title="Open an account in hours."
+    text="Named virtual IBANs, free international payments and multi-currency balances, all connected across the full FX lifecycle." cta="Learn More" />
+
+  <BlogTeaser title="Keep up to date" spacer={false} card="glass-filled" />
+</Layout>

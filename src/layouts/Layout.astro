@@ -1,0 +1,67 @@
+---
+import '../styles/tokens.css';
+import '../styles/main.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Show the announcement bar under the header (most marketing pages do). */
+  banner?: boolean;
+  /** 'light': white page, 16px/120% body type, 120px gaps between sections (legacy pages such as /platform). */
+  theme?: 'dark' | 'light';
+  /** light theme only: 60px between sections instead of 120/100/80. */
+  tight?: boolean;
+}
+
+const {
+  title = 'Tenora',
+  description = 'One connected FX platform. Full governance. Zero hidden fees.',
+  banner = true,
+  theme = 'dark',
+  tight = false,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="/assets/697a14ffeda444207d598d13_TENORA_32.png" />
+    <link rel="apple-touch-icon" href="/assets/697a15060f85a8e80411aee5_TENORA_256.png" />
+    <link rel="preload" href="/fonts/Satoshi-Regular.otf" as="font" type="font/otf" crossorigin />
+    <link rel="preload" href="/fonts/Satoshi-Bold.otf" as="font" type="font/otf" crossorigin />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <script is:inline>document.documentElement.classList.add("js")</script>
+  </head>
+  <body class={theme === 'light' ? 'page page-light' : 'page'}>
+    <Header banner={banner} centered={theme === 'light'} />
+    <div class={theme === 'light' ? (tight ? 'page-flow page-flow-light page-flow-tight' : 'page-flow page-flow-light') : 'page-flow'}>
+      <slot />
+      <Footer />
+    </div>
+    <script>
+      // Fade-up on scroll, matching the original's reveal: elements marked
+      // .reveal start 48px low at opacity 0 and settle over .9s when they come
+      // within 250px of the viewport. Siblings in a .reveal-group stagger by .2s.
+      const els = document.querySelectorAll<HTMLElement>('.reveal');
+      document.querySelectorAll('.reveal-group').forEach((group) => {
+        [...group.children].forEach((child, i) => {
+          if (child instanceof HTMLElement && child.classList.contains('reveal')) {
+            child.style.transitionDelay = `${i * 0.2}s`;
+          }
+        });
+      });
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((e) => {
+          if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+        }),
+        { threshold: 0.05, rootMargin: '0px 0px 250px 0px' }
+      );
+      els.forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>

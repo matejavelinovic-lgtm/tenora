@@ -1,0 +1,23 @@
+---
+// Dark text-only hero (about page): eyebrow, two-tone title, lead, and the
+// faint wave illustration across the lower half.
+interface Props { eyebrow: string; before: string; accent: string; after: string; text: string }
+const { eyebrow, before, accent, after, text } = Astro.props;
+---
+
+<section class="about-hero">
+  <div class="pricing-hero-container">
+    <div class="pricing-hero-inner">
+      <div class="about-hero-grid">
+        <div class="about-hero-heading reveal">
+          <div class="about-hero-eyebrow"><p class="eyebrow">{eyebrow}</p></div>
+          <h1 class="pricing-hero-title">{before} <span class="pricing-hero-accent">{accent}</span> {after}</h1>
+          <p class="pricing-hero-lead">{text}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="about-hero-wave" aria-hidden="true">
+    <div class="about-hero-wave-box reveal"><img class="about-hero-wave-img" src="/assets/68dfe3a6d5de03366251844d_wave_home.svg" alt="" /></div>
+  </div>
+</section>

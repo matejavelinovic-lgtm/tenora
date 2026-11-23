@@ -1,0 +1,96 @@
+---
+// Text + image row, the workhorse of the marketing pages.
+//   tone       white = full-bleed white band, grey = inset rounded grey band,
+//              light = full-width white band without top padding (1280 inset)
+//   reverse    image on the left (and the row gets 60px vertical padding)
+//   container  padded = 1400 max, 100/80 padding (white default)
+//              inset  = 1280 max, flush top/bottom (grey default, homepage)
+//              wide   = 1400 max, flush top/bottom (grey, platform pages)
+//              flush  = full width, 3% sides (white, platform pages)
+//   heading    standard = eyebrow / 46 h2 / 20px lead / button
+//              alt      = eyebrow / 46/50.6 h3 / 18px 500 at 80%  (no button)
+// `title` and `text` may contain <br />.
+interface Props {
+  tone: 'white' | 'grey' | 'light';
+  reverse?: boolean;
+  container?: 'padded' | 'inset' | 'wide' | 'flush';
+  heading?: 'standard' | 'alt';
+  /** alt heading only: the original's 'smaller' title (24px at ≤767). Defaults to white rows. */
+  smallTitle?: boolean;
+  eyebrow: string;
+  title: string;
+  text: string;
+  cta?: string;
+  href?: string;
+  /** alt heading only: 'outline' puts a dark outline button inside the copy column. */
+  ctaStyle?: 'primary' | 'outline';
+  img: string;
+  srcset?: string;
+  sizes?: string;
+  alt: string;
+}
+const {
+  tone, reverse = tone !== 'white', heading = 'standard', smallTitle = tone === 'white',
+  container = tone === 'white' ? 'padded' : 'inset',
+  eyebrow, title, text, cta, href, ctaStyle = 'primary', img, srcset, sizes = '100vw', alt,
+} = Astro.props;
+const blockCta = cta && ctaStyle === 'primary';
+
+const sectionClass = { white: 'band band-white', grey: 'band band-grey band-feature', light: 'band band-light' }[tone];
+const innerClass = {
+  padded: 'band-inner band-inner-padded',
+  inset: 'band-inner band-inner-inset',
+  wide: 'band-inner band-inner-wide',
+  flush: 'band-inner band-inner-flush',
+}[container];
+const rowClass = `feature-row${reverse ? ' feature-row-reverse' : ''} feature-row-${container}`;
+---
+
+<section class={sectionClass}>
+  <div class={innerClass}>
+    <div class={rowClass}>
+      {reverse && (
+        <div class="feature-media reveal">
+          <img class="feature-img" src={img} srcset={srcset} sizes={srcset ? sizes : undefined} alt={alt} loading="lazy" />
+        </div>
+      )}
+      {heading === 'standard' ? (
+        <div class="section-heading feature-copy reveal">
+          <p class="eyebrow">{eyebrow}</p>
+          <h2 class="h2" set:html={title} />
+          <p class="lead" set:html={text} />
+          {cta && <a class="btn btn-primary feature-btn" href={href}>{cta}</a>}
+        </div>
+      ) : (
+        <div class={blockCta ? 'feature-copy feature-alt-block reveal' : 'feature-copy feature-copy-alt reveal'}>
+          {blockCta ? (
+            <>
+              <div class="feature-copy-alt">
+                <div class="feature-alt-head">
+                  <p class="eyebrow">{eyebrow}</p>
+                  <h2 class={`feature-alt-title${smallTitle ? ' feature-alt-title-smaller' : ''}`} set:html={title} />
+                </div>
+                <p class="feature-alt-text" set:html={text} />
+              </div>
+              <div class="split-hero-actions feature-alt-actions"><a class="btn btn-primary" href={href}>{cta}</a></div>
+            </>
+          ) : (
+            <>
+              <div class="feature-alt-head">
+                <p class="eyebrow">{eyebrow}</p>
+                <h2 class={`feature-alt-title${smallTitle ? ' feature-alt-title-smaller' : ''}`} set:html={title} />
+              </div>
+              <p class="feature-alt-text" set:html={text} />
+              {cta && <a class="btn btn-outline btn-outline-dark feature-alt-outline" href={href}>{cta}</a>}
+            </>
+          )}
+        </div>
+      )}
+      {!reverse && (
+        <div class="feature-media reveal">
+          <img class="feature-img" src={img} srcset={srcset} sizes={srcset ? sizes : undefined} alt={alt} loading="lazy" />
+        </div>
+      )}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,31 @@
+---
+// Dark hero with copy on the left and a product image that runs off the
+// right edge (platform pages). The wave canvas sits along the bottom.
+interface Props {
+  eyebrow: string; title: string; text: string;
+  cta: string; href: string;
+  img: string; srcset?: string; sizes?: string; alt: string;
+}
+const { eyebrow, title, text, cta, href, img, srcset, sizes = '100vw', alt } = Astro.props;
+---
+
+<section class="split-hero">
+  <div class="split-hero-wave" data-fidelity-mask><canvas class="blog-wave-canvas" data-wave="hero"></canvas></div>
+  <div class="split-hero-inner">
+    <div class="split-hero-grid">
+      <div class="split-hero-copy reveal">
+        <div class="section-heading">
+          <p class="eyebrow">{eyebrow}</p>
+          <h1 class="split-hero-title" set:html={title} />
+          <p class="lead lead-light">{text}</p>
+          <div class="split-hero-actions"><a class="btn btn-primary hero-btn" href={href}>{cta}</a></div>
+        </div>
+      </div>
+      <div class="split-hero-media reveal">
+        <div class="split-hero-frame">
+          <img class="split-hero-img" src={img} srcset={srcset} sizes={srcset ? sizes : undefined} alt={alt} />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

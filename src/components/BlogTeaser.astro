@@ -1,0 +1,64 @@
+---
+import { latestInsights, insightHref, formatDate } from '../lib/insights';
+// "Keep Up To Date" — the three latest insights on a dark band.
+// Posts come from the insights collection (src/content/insights).
+// card: plain (homepage), glass (platform pages), glass-filled (platform pages
+// that also carry the timeline, whose interaction styles every glass card).
+interface Props { title?: string; spacer?: boolean; card?: 'plain' | 'glass' | 'glass-filled' }
+const { title = 'Keep Up To Date', spacer = true, card = 'plain' } = Astro.props;
+const A = '/assets/';
+const posts = (await latestInsights(3)).map((p) => ({
+  href: insightHref(p), title: p.data.title, date: formatDate(p.data.date), img: p.data.image, srcset: p.data.imageSrcset,
+}));
+const map = `${A}69c550d1a57605d8cd8c7886_World-Map-Pattern`;
+const mapSet = [500, 800, 1080].map((v) => `${map}-p-${v}.png ${v}w`).join(', ') + `, ${map}.png 1335w`;
+---
+
+{spacer && (
+  <section class="dark-spacer" aria-hidden="true">
+    <div class="dark-cover"><img class="dark-cover-img" src={`${map}.png`} srcset={mapSet} sizes="100vw" alt="" loading="lazy" /></div>
+  </section>
+)}
+
+<section class="blog-band">
+  <div class="dark-cover"><div class="dark-cover-globe" id="tenora-globe"></div></div>
+  <div class="blog-band-inner">
+    <div class="blog-band-head">
+      <div class="section-heading blog-band-heading reveal">
+        <p class="eyebrow">Blog</p>
+        <h2 class="h2 h2-light">{title}</h2>
+        <p class="lead lead-light">Take the first step toward smarter, more transparent FX decisions.</p>
+      </div>
+      <div class="blog-band-link">
+        <a class="btn btn-outline btn-outline-thick" href="/insights">Read More</a>
+      </div>
+    </div>
+    <div class="blog-grid reveal-group">
+      {posts.map((p) => (
+        <article class="blog-card reveal">
+          <a class="blog-card-cover" href={p.href} aria-label={p.title}></a>
+          <div class="blog-card-media">
+            <img class="blog-card-img" src={p.img} srcset={p.srcset} sizes="100vw" alt="" loading="lazy" />
+          </div>
+          {card === 'plain' ? (
+            <div class="blog-card-body">
+              <h3 class="blog-card-title">{p.title}</h3>
+              <p class="blog-card-date">{p.date}</p>
+              <div class="blog-card-rule"></div>
+              <a class="blog-card-link" href={p.href}>Read More</a>
+            </div>
+          ) : (
+            <div class={card === 'glass-filled' ? 'blog-card-body blog-card-body-glass blog-card-body-filled' : 'blog-card-body blog-card-body-glass'}>
+              <h3 class="blog-card-title">{p.title}</h3>
+              <div class="blog-card-meta"><p class="blog-card-date blog-card-cat">Added to</p><p class="blog-card-date blog-card-meta-date">{p.date}</p></div>
+              <div class="blog-card-rule"></div>
+            </div>
+          )}
+        </article>
+      ))}
+    </div>
+  </div>
+  <div class="blog-wave" data-fidelity-mask>
+    <canvas class="blog-wave-canvas" data-wave="blog"></canvas>
+  </div>
+</section>

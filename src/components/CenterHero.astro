@@ -1,0 +1,27 @@
+---
+// Dark hero, centred copy over a full-width diagram, wave along the bottom.
+interface Props {
+  eyebrow: string; title: string; text: string; cta: string; href: string;
+  img?: string; srcset?: string; sizes?: string; alt?: string;
+  /** 100px top padding inside (default 60px). */
+  loose?: boolean;
+}
+const { eyebrow, title, text, cta, href, img, srcset, sizes = '100vw', alt, loose = false } = Astro.props;
+---
+
+<section class="center-hero">
+  <div class="split-hero-wave" data-fidelity-mask><canvas class="blog-wave-canvas" data-wave="hero"></canvas></div>
+  <div class={loose ? 'center-hero-inner center-hero-inner-loose' : 'center-hero-inner'}>
+    <div class="hero-heading center-hero-heading reveal">
+      <p class="eyebrow">{eyebrow}</p>
+      <h1 class="hero-title" set:html={title} />
+      <p class="hero-lead" set:html={text} />
+      <div class="hero-actions"><a class="btn btn-primary hero-btn" href={href}>{cta}</a></div>
+    </div>
+    {img && (
+      <div class="center-hero-media">
+        <img class="center-hero-img" src={img} srcset={srcset} sizes={srcset ? sizes : undefined} alt={alt} />
+      </div>
+    )}
+  </div>
+</section>

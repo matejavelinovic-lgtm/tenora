@@ -1,0 +1,21 @@
+---
+// Grey band with a large pull quote and a faint closing-quote mark.
+interface Props { text: string; name: string; role: string }
+const { text, name, role } = Astro.props;
+---
+
+<section class="band band-grey band-quote">
+  <div class="band-inner band-inner-flush">
+    <figure class="quote">
+      <div class="quote-body reveal">
+        <p class="eyebrow">Quote</p>
+        <blockquote class="quote-text">{text}</blockquote>
+        <figcaption class="quote-author">
+          <span class="quote-name">{name}</span>
+          <span class="quote-role">{role}</span>
+        </figcaption>
+      </div>
+      <div class="quote-mark reveal" aria-hidden="true">”</div>
+    </figure>
+  </div>
+</section>

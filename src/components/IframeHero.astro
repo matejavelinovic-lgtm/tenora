@@ -1,0 +1,27 @@
+---
+// Dark hero: copy on the left, Tenora's hosted hero animation (an iframe on
+// cdn.tenora.com) on the right. Wave along the bottom.
+interface Props { eyebrow: string; title: string; text: string; cta: string; href: string; src: string }
+const { eyebrow, title, text, cta, href, src } = Astro.props;
+---
+
+<section class="center-hero">
+  <div class="split-hero-wave" data-fidelity-mask><canvas class="blog-wave-canvas" data-wave="hero"></canvas></div>
+  <div class="center-hero-inner center-hero-inner-loose">
+    <div class="split-hero-grid">
+      <div class="split-hero-copy iframe-hero-copy reveal">
+        <div class="section-heading">
+          <p class="eyebrow">{eyebrow}</p>
+          <h1 class="split-hero-title" set:html={title} />
+          <p class="lead lead-light">{text}</p>
+          <div class="split-hero-actions"><a class="btn btn-primary hero-btn" href={href}>{cta}</a></div>
+        </div>
+      </div>
+      <div class="split-hero-media reveal" data-fidelity-mask>
+        <div class="iframe-hero-frame">
+          <iframe class="iframe-hero-iframe" src={src} title="Tenora FX orchestration animation" scrolling="no" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

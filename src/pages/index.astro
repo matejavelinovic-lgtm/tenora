@@ -1,0 +1,198 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import FeatureRow from '../components/FeatureRow.astro';
+import ProblemBand from '../components/ProblemBand.astro';
+import Timeline from '../components/Timeline.astro';
+import Quote from '../components/Quote.astro';
+import CtaBand from '../components/CtaBand.astro';
+import BlogTeaser from '../components/BlogTeaser.astro';
+
+const A = '/assets/';
+const stages = [
+  {
+    icon: 'stage-pre-trade', title: 'Pre-Trade', href: '/platform/fx-risk-management',
+    items: ['Model hedge scenarios with cashflow impact', 'Set your hedging policy and parameters', 'See every bank and broker trade in one place'],
+    img: '69e0f51904fc7b0846e17980_Frame-427322712', variants: [500, 800, 1080, 1600], full: 1796,
+    alt: 'Tenora platform showing 44% USD hedging compliance with a quick hedge action menu - allowing finance teams to top up to min, mid or max instantly',
+  },
+  {
+    icon: 'stage-trade', title: 'Trade', href: '/platform/transparent-fx-execution',
+    items: ['Identify policy compliant trades instantly', 'Compare live quotes for best execution', 'Trade through Tenora or your existing bank'],
+    img: '69e0f4c8b802d46894d7ca29_Frame-2147225750', variants: [500, 800, 1080], full: 1347,
+    alt: 'Tenora trade execution screen comparing transparent live quotes across three banks, enabling governed best-execution decisions with full cost visibility',
+  },
+  {
+    icon: 'stage-post-trade', title: 'Post-Trade', href: '/platform/global-accounts-and-payments',
+    items: ['Full audit trail on every trade', 'Send fast and reliable payments', 'Create bespoke named virtual IBAN accounts'],
+    img: '69e0fdea8e373b0b79b0892b_Frame-2147225751', variants: [500, 800, 1080, 1600], full: 1796,
+    alt: 'Tenora post-trade accounts screen showing virtual IBAN balances and beneficiary payments — completing a fully auditable, connected FX cycle',
+  },
+];
+const srcset = (base: string, variants: number[], full: number, ext = 'png') =>
+  [...variants.map((v) => `${A}${base}-p-${v}.${ext} ${v}w`), `${A}${base}.${ext} ${full}w`].join(', ');
+
+const painPoints = [
+  'Managing currency risk using spreadsheets',
+  'Hidden FX charges and payment fees',
+  'FX hedging gaps leaving cash-flow exposed',
+  'Manual processes leading to time wasted and errors',
+];
+
+const timeline = [
+  { icon: 'timeline-governance', title: 'FX Risk Governance', href: '/platform/fx-risk-management', text: 'Stay ahead of currency exposure with real-time visibility, policy controls and the insight to make confident hedging decisions.' },
+  { icon: 'timeline-analyser', title: 'Trade Analyser', href: '/platform/fx-trade-analyser', text: 'Instant access to the true cost of your currency trades. From forward points and counterparty fees to the long-term cost of inaction, we help you uncover what others don’t show.' },
+  { icon: 'timeline-payments', title: 'Payments', href: '/platform/global-accounts-and-payments', text: 'Send and receive domestic and international payments with same-day settlement for 12 currencies.' },
+  { icon: 'timeline-accounts', title: 'Accounts', href: '/platform/global-accounts-and-payments', text: 'Hold, manage and move currency across your named virtual account, giving your business the flexibility to operate globally.' },
+];
+
+const governance = [
+  { icon: 'gov-fca', title: 'FCA-regulated', text: 'Fully authorised as an electronic money institution, which ensures we meet the highest regulatory standards.' },
+  { icon: 'gov-partners', title: 'Institutional-grade partners', text: 'Strong relationships built on regulated foundations, meaning your money is always safeguarded with licensed banks.' },
+  { icon: 'gov-audit', title: 'Audit-ready reporting', text: 'Every trade, decision and approval is logged and reportable, giving you a clear record whenever you need it.' },
+];
+---
+
+<Layout title="One Connected FX Platform. Full Governance. Zero Hidden Fees | Tenora"
+  description="Tenora gives finance teams clarity and control across every exposure, trade and payment.">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-heading reveal">
+        <p class="eyebrow">FX orchestration</p>
+        <h1 class="hero-title"><span class="hero-title-line">FX is fragmented and opaque,<br />‍</span><span class="hero-title-accent">until now.</span></h1>
+        <p class="hero-lead">We give finance teams clarity and control across every exposure, trade and payment.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary hero-btn" href="/book-a-call">Book Demo</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-shot reveal">
+          <img class="hero-shot-img" src={`${A}69e24ca055953ffd936bcd79_Frame-1686567084-1.png`}
+            srcset={srcset('69e24ca055953ffd936bcd79_Frame-1686567084-1', [500, 800, 1080], 1200)}
+            sizes="(max-width: 767px) 100vw, 505px"
+            alt="Tenora FX orchestration platform unifying hedging policy, counterparty execution and trade blotter." />
+        </div>
+        <div class="hero-shot hero-shot-gap reveal">
+          <img class="hero-shot-img hero-shot-hidden" src={`${A}69e24ca055953ffd936bcd79_Frame-1686567084-1.png`}
+            srcset={srcset('69e24ca055953ffd936bcd79_Frame-1686567084-1', [500, 800, 1080], 1200)}
+            sizes="(max-width: 1200px) 100vw, 1200px" alt="" />
+        </div>
+        <div class="hero-shot reveal">
+          <img class="hero-shot-img" src={`${A}69e24ca0b76477d57966ac9d_Frame-1686567084.png`}
+            srcset={srcset('69e24ca0b76477d57966ac9d_Frame-1686567084', [500, 800, 1080], 1200)}
+            sizes="(max-width: 1200px) 100vw, 1200px"
+            alt="Tenora FX orchestration platform unifying hedging policy, counterparty execution and trade blotter." />
+        </div>
+        <img class="hero-card reveal" src={`${A}69e24d6f3ec23d0170f836b0_card.png`}
+          srcset={srcset('69e24d6f3ec23d0170f836b0_card', [500, 800], 998)}
+          sizes="(max-width: 998px) 100vw, 998px"
+          alt="Tenora FX orchestration platform unifying hedging policy, counterparty execution and trade blotter in one connected dashboard — giving finance teams full transparency across every bank, exposure and trade" />
+      </div>
+    </div>
+    <div class="hero-wave" data-fidelity-mask>
+      <canvas class="hero-wave-canvas" data-wave="hero"></canvas>
+    </div>
+  </section>
+
+  <ProblemBand eyebrow="the PROBLEM" title="The old way is broken.<br />Finance teams are struggling with -" items={painPoints} />
+
+  <!-- Control at every stage -->
+  <section class="band band-white">
+    <div class="band-inner band-inner-padded">
+      <div class="section-heading section-heading-center reveal">
+        <p class="eyebrow">one connected platform</p>
+        <h2 class="h2 h2-center">Control at every stage</h2>
+        <p class="lead lead-center">An AI-native platform that connects decision-making, execution and oversight in real time.</p>
+      </div>
+      <div class="stage-grid reveal-group">
+        {stages.map((s) => (
+          <div class="stage-card reveal">
+            <div class="stage-card-body">
+              <div class="stage-card-head">
+                <Icon name={s.icon} class="icon-box" />
+                <h3 class="stage-card-title">{s.title}</h3>
+              </div>
+              <ul class="tick-list">
+                {s.items.map((it) => (
+                  <li class="tick-item"><Icon name="tick" class="tick-icon" /><span class="tick-text">{it}</span></li>
+                ))}
+              </ul>
+              <div class="stage-card-media">
+                <img class="stage-card-img" src={`${A}${s.img}.png`} srcset={srcset(s.img, s.variants, s.full)} sizes="100vw" alt={s.alt} loading="lazy" />
+              </div>
+              <a class="btn btn-primary btn-block" href={s.href}>Learn More</a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Quote text={'"FX has always been one process. When you manage it as one, everything becomes clearer, faster, and more controlled."'} name="Tom Alexander" role="Co-founder & Chief Product Officer" />
+
+  <FeatureRow tone="white" eyebrow="SINGLE SOURCE OF TRUTH" title="Streamline manual processes with strategic automation."
+    text="No more spreadsheets or fragmented workflows. Every trade, every counterparty and every hedging policy unified in one place. Tenora continuously benchmarks your trades against your policy in real-time."
+    cta="Learn More" href="/platform/fx-risk-management"
+    img={`${A}6a312d9bdc86ce57f67dcda2_Tenora-functionality-animation.png`}
+    srcset={srcset('6a312d9bdc86ce57f67dcda2_Tenora-functionality-animation', [500], 567)}
+    alt="Tenora platform diagram showing hedging policy, trade blotter, multi-counterparty executions and exposure forecasts connected in a single governed workflow — eliminating fragmented manual processes" />
+
+  <FeatureRow tone="grey" eyebrow="FULL VISIBILITY" title="Bring clarity to an unpredictable market."
+    text="FX markets will always move, but you don’t have to be caught off guard. We give you the tools to stay prepared, understand your exposure, and take control of your hedging decisions with confidence."
+    cta="Learn More" href="/platform/fx-risk-management"
+    img={`${A}69d9072cad2e04ae456f0253_1.6.png`}
+    srcset={srcset('69d9072cad2e04ae456f0253_1.6', [500], 541)}
+    alt="Tenora USD exposures and hedging compliance table showing non-compliant positions — giving finance teams proactive, transparent visibility to act before risk escalates" />
+
+  <FeatureRow tone="white" eyebrow="TRUE price discovery" title="Transparent pricing on every trade."
+    text="Competitive, benchmarked execution across spot and forwards, with the audit trail to prove it."
+    cta="Learn More" href="/platform/transparent-fx-execution"
+    img={`${A}6a312dfb6624674e78e40358_Tenora-execute-at-best-price-diagram.png`}
+    alt="Tenora transparent execution flow from risk analysis and scenario modelling through to benchmarked multi-bank quotes and governed best-price execution" />
+
+  <FeatureRow tone="grey" eyebrow="alternative banking" title="Multi-currency accounts and instant payments."
+    text="Free overseas payments and virtual accounts that complement your wider FX strategy. Move money between your accounts or pay suppliers overseas."
+    cta="See what we do" href="/platform/global-accounts-and-payments"
+    img={`${A}69e5f9190f1d1d8153cecf95_Your-accounts.png`}
+    srcset={srcset('69e5f9190f1d1d8153cecf95_Your-accounts', [500, 800, 1080, 1600], 1796)}
+    alt="Tenora named virtual IBAN accounts for Stormount Group entities in GBP, EUR and DKK — enabling transparent, connected cross-border payments as part of a governed FX strategy" />
+
+  <Timeline eyebrow="AN EASY WAY TO MANAGE" title="Designed to support your cross-border workflows."
+    text="Built around a structured workflow that connects decision-making, execution and oversight in real time. Every action updates exposure, every trade is governed, and every outcome is traceable."
+    cards={timeline} />
+
+  <!-- Governance -->
+  <section class="governance">
+    <div class="governance-inner">
+      <div class="governance-heading">
+        <div class="section-heading reveal">
+          <p class="eyebrow">infrastructure to last</p>
+          <h2 class="h2">Governance isn't a feature, it's the foundation.</h2>
+          <p class="lead">Tenora puts compliance and risk mitigation at the centre of your FX cycle, not as a bolt-on, but by design.</p>
+        </div>
+      </div>
+      <div class="governance-grid reveal-group">
+        {governance.map((g) => (
+          <div class="gov-tile reveal">
+            <div class="gov-line">
+              <Icon name="divider-vertical" class="gov-divider" />
+              <div class="gov-accent"></div>
+            </div>
+            <div class="gov-content">
+              <Icon name={g.icon} class="gov-icon" />
+              <div class="gov-copy">
+                <h3 class="h4">{g.title}</h3>
+                <p class="gov-text">{g.text}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+  <BlogTeaser />
+</Layout>

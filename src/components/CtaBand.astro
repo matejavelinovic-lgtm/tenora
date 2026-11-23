@@ -1,0 +1,55 @@
+---
+// "Ready to take control?" call to action with the scrolling flag columns.
+interface Props { eyebrow?: string; title?: string; text?: string; cta?: string; href?: string; nested?: boolean }
+const {
+  eyebrow = 'HOW IT WORKS',
+  title = 'Ready to take control?',
+  text = 'Take the first step toward smarter, more transparent FX decisions.',
+  cta = 'book a call',
+  href = '/book-a-call',
+  nested = true,
+} = Astro.props;
+
+const F = (id: string, n: string) => `/assets/${id}_${n}.svg`;
+const flags = [
+  F('69e5f0f5b9729c40c59efe95', 'Flag'), F('69e5f0f565aac5e5a311489b', 'Flag-1'), F('69e5f0f45adba87d5c81dc55', 'Flag-2'),
+  F('69e5f0f4a4b4878ef892defe', 'Flag-3'), F('69c5101ace01d179847bddee', 'Flag-4'), F('69e5f0f49af3ba974fde0cf9', 'Flag-5'),
+  F('69e5f0f4ec7f950385476f48', 'Flag-6'), F('69e5f0f465aac5e5a3114887', 'Flag-7'), F('69e5f0f43a629fd98f8e5762', 'Flag-8'),
+  F('69e5f0f4e2ccd21b262648d3', 'Flag-9'), F('69e5f0f4e820dfabdd1bbf3c', 'Flag-10'), F('69e5f0f46924052c7713fb2f', 'Flag-11'),
+  F('69e5f0f4dd94c8a5434c3e69', 'Flag-12'), F('69e5f0f4dbe79a3ae57d7d33', 'Flag-13'), F('69e5f0f44250fd6d6d3dc4f7', 'Flag-14'),
+  F('69e5f0f42cd8251e8f5d418a', 'Flag-15'),
+];
+// Four columns, each a different rotation of the set, scrolling at offset speeds.
+const columns = [0, 5, 10, 3].map((start) => [...flags.slice(start), ...flags.slice(0, start)]);
+---
+
+<section class={`band band-white band-cta${nested ? '' : ' band-cta-direct'}`}>
+  <div class={nested ? 'band-inner band-inner-flush-x' : 'band-inner band-inner-padded'}>
+    <div class={nested ? 'cta-shell' : 'cta-shell cta-shell-none'}>
+      <div class={nested ? 'cta-shell-inner' : 'cta-shell-inner cta-shell-inner-none'}>
+        <div class="cta">
+          <div class="cta-copy">
+            <div class="section-heading reveal">
+              <p class="eyebrow">{eyebrow}</p>
+              <h2 class="h2 h2-light">{title}</h2>
+              <p class="lead lead-light">{text}</p>
+              <a class="btn btn-primary cta-btn" href={href}>{cta}</a>
+            </div>
+          </div>
+          <div class="cta-flags" data-fidelity-mask aria-hidden="true">
+            {columns.map((col, i) => (
+              <div class={`cta-flag-col cta-flag-col-${i + 1}`}>
+                <div class="cta-flag-track">
+                  {[...col, ...col].map((src) => (
+                    <span class="cta-flag"><img class="cta-flag-img" src={src} alt="" width="64" height="64" loading="lazy" /></span>
+                  ))}
+                </div>
+              </div>
+            ))}
+            <div class="cta-flags-fade"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

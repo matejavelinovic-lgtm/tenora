@@ -1,0 +1,19 @@
+---
+// Rounded dark band: centred two-tone heading, line of text, outline button,
+// faint wave pattern behind.
+interface Props { title: string; accent: string; text: string; cta: string; href: string }
+const { title, accent, text, cta, href } = Astro.props;
+---
+
+<section class="dark-cta">
+  <div class="dark-cta-inner">
+    <div class="dark-cta-body">
+      <div class="dark-cta-heading reveal">
+        <h2 class="dark-cta-title">{title} <span class="pricing-hero-accent">{accent}</span></h2>
+      </div>
+      <p class="dark-cta-text reveal">{text}</p>
+      <a class="btn btn-outline reveal" href={href}>{cta}</a>
+    </div>
+  </div>
+  <div class="dark-cta-wave" aria-hidden="true"></div>
+</section>

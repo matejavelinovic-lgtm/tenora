@@ -1,0 +1,81 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CenterHero from '../../components/CenterHero.astro';
+import StatsBand from '../../components/StatsBand.astro';
+import FeatureGrid from '../../components/FeatureGrid.astro';
+import StepTimeline from '../../components/StepTimeline.astro';
+import FeatureRow from '../../components/FeatureRow.astro';
+import ComparisonTable from '../../components/ComparisonTable.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { asset, img, srcset } from '../../lib/img';
+---
+
+<Layout title="FX Exposure Analysis & Scenario Modelling | Tenora"
+  description="Instant visibility into the true cost of every currency trade. Forward points, counterparty fees and the cost of not hedging.">
+
+  <CenterHero loose eyebrow="trade analyser" title="Find out what your FX is costing"
+    text="Instant visibility into the true cost of every currency trade. Forward points, counterparty fees and the cost of not hedging. We show you what others don't want you to see."
+    cta="Try For free" href="/trade-analyser-lite" />
+
+  <StatsBand stats={[
+    { value: '100%', label: 'Visibility into every trade charge' },
+    { value: '£0', label: 'Hidden margin' },
+    { value: '5+', label: 'Counterparties benchmarked per trade' },
+    { value: '1', label: 'Place for all your post trade analysis' },
+  ]} />
+
+  <FeatureGrid centered eyebrow="THE COST OF OPACITY" title="Most businesses don't know what their FX is really costing them.<br />‍"
+    text="The Trade Analyser changes that. Here's why it matters:"
+    tiles={[
+      { icon: 'i-81ed8265', title: 'Hidden costs accumulate', text: 'Small pricing variances compound over time. Without structured analysis, the true long-term cost of FX remains invisible.' },
+      { icon: 'i-33c6fe87', title: 'Counterparty performance is rarely benchmarked', text: 'Most trading relationships run without consistent benchmarking, making performance hard to evidence and even harder to challenge.' },
+      { icon: 'i-6dac1f38', title: 'Governance requires data', text: 'CFOs and boards expect demonstrable oversight of financial decisions. Currency trading outcomes should be no exception.' },
+    ]} />
+
+  <StepTimeline eyebrow="how it works" title="From input to insight in four steps."
+    text="The Trade Analyser aggregates historical and real-time exchange rates to deliver transparent, actionable insights on every hedge."
+    img={asset('69df456f96a75596d01c7537_3.2.png')} srcset={srcset('69df456f96a75596d01c7537_3.2', [500], 624)}
+    alt="Tenora Trade Analyser input screen"
+    steps={[
+      { eyebrow: 'Capture', title: 'Input your hedge details', text: "Enter the details of a trade you're about to execute or one you've already placed." },
+      { eyebrow: 'Analyse', title: 'Evaluate the findings', text: 'Assess hedge costs, the risk of not hedging and the expected benefit of your hedging strategy.' },
+      { eyebrow: 'Act', title: 'Make better decisions', text: 'Negotiate prices in real time on live quotes. Go into every future hedge better informed.' },
+      { eyebrow: 'monitor', title: 'Track trends over time', text: 'Review counterparty charges across multiple saved hedges. Spot cost trends before they become a problem.' },
+    ]} />
+
+  <section class="dark-spacer" aria-hidden="true"></section>
+
+  <FeatureRow tone="white" container="flush" reverse eyebrow="counterparty benchmarking" title="See exactly what every counterparty is charging."
+    text="Instantly view charges per counterparty across all executed hedges. Track cost trends over time and catch price increases before they compound."
+    cta="book an audit" href="/book-a-call"
+    {...img('68ea5e9b7d3e7aab631b2e4a_product_canvas-3', [500, 800, 1080], 1236)} alt="Tenora counterparty charges view" />
+
+  <FeatureRow tone="white" container="flush" eyebrow="the cost of not hedging" title="Know the downside before you decide to do nothing."
+    text="Use historical data to forecast how far FX rates could move against you, and the cash impact on your costs or revenue if you leave exposure unhedged. Inaction is often the highest form of speculation."
+    cta="Try for free" href="/trade-analyser-lite"
+    {...img('6a312d9bdc86ce57f67dcda2_Tenora-functionality-animation', [500], 567)} alt="Tenora cost of not hedging forecast" />
+
+  <FeatureRow tone="grey" eyebrow="make them accountable" title="See the charge. Challenge it immediately."
+    text="The moment a quote is received, you are shown your the counterparty's charge, rated Excellent, Good, Average, Above Average or High. No more accepting pricing you can't interrogate."
+    cta="Check Now" href="/trade-analyser-lite"
+    {...img('68ea5e9b43cf43932a14aefd_product_canvas', [500, 800, 1080], 1242)} alt="Tenora counterparty charge rating" />
+
+  <FeatureRow tone="white" container="flush" heading="alt" eyebrow="Uncover the supply chain" title="Are your forward points being passed on fairly?"
+    text="Forward points are generated in your favour on certain hedging products. The Trade Analyser reveals whether your counterparty is passing them on, or keeping them. <br />"
+    img={asset('69df720c3fcd05dcebe6dd93_3.7.png')} alt="Tenora forward points analysis" />
+
+  <ComparisonTable eyebrow="pricing" title="Fast, clear insights for confident decisions"
+    text="Whether you want a quick, one-off check or a powerful way to track and compare hedges over time, Tenora’s Trade Analyser gives you the control you need."
+    rows={[
+      { label: 'Analyse live trades', lite: true, tight: true },
+      { label: 'Analyse historic trades', lite: true, tight: true },
+      { label: 'Expose counterparty charges', lite: true },
+      { label: 'Uncover forward points', lite: true },
+      { label: 'Estimate impact of not hedging', lite: true },
+      { label: 'Save trade history', lite: false },
+      { label: 'Compare counterparties over time', lite: false },
+      { label: 'Bulk upload trades', lite: false },
+    ]} />
+
+  <CtaBand nested={false} eyebrow="benchmarking" title="Not sure of your FX costs?" text="No commitment, no sales call." cta="try trade analyser" href="/trade-analyser-lite" />
+</Layout>

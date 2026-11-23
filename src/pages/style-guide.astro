@@ -1,0 +1,122 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+
+const colors = [
+  ['Brand', [['--color-green', '#01e89d'], ['--color-green-soft', '#80f1cb'], ['--color-green-light', '#52efbc'], ['--color-green-pale', '#aef8e0'], ['--color-blue-link', '#90d8ec']]],
+  ['Surfaces', [['--color-bg-page', '#060906'], ['--color-bg-black', '#070707'], ['--color-bg-white', '#ffffff'], ['--color-bg-off-white', '#f8faf9'], ['--color-bg-grey', '#fafafa'], ['--color-bg-off-black', '#2f2f30']]],
+  ['Text', [['--color-text-heading-dark', '#060906'], ['--color-text-body-dark', '#2c3f4d'], ['--color-text-body-light', '#f2f2f2'], ['--color-text-muted', '#454545'], ['--color-text-off-black', '#2f2f30'], ['--color-text-article', '#23272f']]],
+  ['Lines', [['--color-border-card', '#e4e4e7'], ['--color-border-dark', '#7070707a'], ['--color-border-light-grey', '#dddddd']]],
+] as const;
+const type = [
+  ['H1 · 60/72 bold (≤479: 46)', 'hero-title sg-left', 'FX is fragmented'],
+  ['H2 · 46/55.2 bold (≤991: 32)', 'h2', 'Control at every stage'],
+  ['Card title · 40/48 bold', 'stage-card-title', 'Pre-Trade'],
+  ['Quote · 40/48 regular', 'quote-text', 'One process.'],
+  ['Problem · 34/40.8 (500)', 'problem-title sg-dark', 'The old way is broken.'],
+  ['Glass title · 28/36.4', 'glass-card-title sg-dark', 'FX Risk Governance'],
+  ['H4 · 24/31.2 bold', 'h4', 'FCA-regulated'],
+  ['Lead · 20/28', 'lead', 'An AI-native platform that connects decision-making, execution and oversight.'],
+  ['Body · 18/25.2', 'gov-text', 'Fully authorised as an electronic money institution.'],
+  ['Small · 16/22.4', 'tick-text', 'Model hedge scenarios with cashflow impact'],
+  ['Eyebrow · 12/20 bold, 1px tracking, gradient', 'eyebrow', 'One connected platform'],
+];
+const spaces = [4, 8, 12, 16, 20, 24, 32, 40, 60, 80, 100, 120, 140];
+const radii = [['xs', 4], ['sm', 8], ['card', 12], ['md', 16], ['lg', 32], ['xl', 42], ['pill', 99]];
+---
+
+<Layout title="Style guide | Tenora" banner={false}>
+  <section class="band band-white sg">
+    <div class="band-inner band-inner-padded sg-inner">
+      <div class="section-heading">
+        <p class="eyebrow">Design system</p>
+        <h1 class="h2">Tenora style guide</h1>
+        <p class="lead">Every token in <code>src/styles/tokens.css</code>, read from tenora.com's computed styles. Breakpoints: ≥1440, ≥1280, base 992–1279, ≤991, ≤767, ≤479.</p>
+      </div>
+
+      <h2 class="h4 sg-h">Colour</h2>
+      {colors.map(([group, list]) => (
+        <div class="sg-group">
+          <p class="sg-label">{group}</p>
+          <div class="sg-swatches">
+            {list.map(([name, hex]) => (
+              <div class="sg-swatch"><span class="sg-chip" style={`background:var(${name})`}></span><code class="sg-code">{name}</code><span class="sg-hex">{hex}</span></div>
+            ))}
+          </div>
+        </div>
+      ))}
+
+      <h2 class="h4 sg-h">Type — Satoshi (300/400/700/900; no 500/600 face, by design)</h2>
+      <div class="sg-type">
+        {type.map(([label, cls, sample]) => (
+          <div class="sg-type-row"><p class="sg-label">{label}</p><p class={cls}>{sample}</p></div>
+        ))}
+      </div>
+
+      <h2 class="h4 sg-h">Spacing</h2>
+      <div class="sg-spaces">
+        {spaces.map((s) => <div class="sg-space"><span class="sg-bar" style={`width:${s}px`}></span><code class="sg-code">--space-{s}</code></div>)}
+      </div>
+
+      <h2 class="h4 sg-h">Radii</h2>
+      <div class="sg-swatches">
+        {radii.map(([n, v]) => <div class="sg-swatch"><span class="sg-radius" style={`border-radius:${v}px`}></span><code class="sg-code">--radius-{n} · {v}px</code></div>)}
+      </div>
+
+      <h2 class="h4 sg-h">Buttons</h2>
+      <div class="sg-row sg-dark-row">
+        <a class="btn btn-primary" href="#">Book Demo</a>
+        <a class="btn btn-outline" href="#">Free Trade Analyser</a>
+        <a class="btn btn-outline btn-outline-thick" href="#">Read More</a>
+      </div>
+
+      <h2 class="h4 sg-h">Components</h2>
+      <div class="sg-components">
+        <div class="stage-card">
+          <div class="stage-card-body">
+            <div class="stage-card-head"><Icon name="stage-pre-trade" class="icon-box" /><h3 class="stage-card-title">Card</h3></div>
+            <ul class="tick-list"><li class="tick-item"><Icon name="tick" class="tick-icon" /><span class="tick-text">Tick list item</span></li><li class="tick-item"><Icon name="tick" class="tick-icon" /><span class="tick-text">Another item</span></li></ul>
+            <a class="btn btn-primary btn-block" href="#">Learn More</a>
+          </div>
+        </div>
+        <div class="sg-dark-row sg-pad">
+          <div class="glass-card">
+            <div class="glass-card-body"><Icon name="timeline-governance" class="icon-box" /><h3 class="glass-card-title">Glass card</h3><p class="glass-card-text">Used on dark bands (timeline).</p></div>
+            <div class="glass-card-actions"><a class="btn btn-outline btn-fixed" href="#">Learn More</a></div>
+          </div>
+        </div>
+        <div class="gov-tile">
+          <div class="gov-line"><Icon name="divider-vertical" class="gov-divider" /><div class="gov-accent"></div></div>
+          <div class="gov-content"><Icon name="gov-fca" class="gov-icon" /><div class="gov-copy"><h3 class="h4">Feature tile</h3><p class="gov-text">Accent line, icon, title and text.</p></div></div>
+        </div>
+      </div>
+
+      <h2 class="h4 sg-h">Motion</h2>
+      <p class="lead">Reveal: fade-up 48px, .9s <code>cubic-bezier(.16,1,.3,1)</code>, siblings staggered .2s, triggers 250px before entering the viewport. Hover: .4s colour/background/border.</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .sg-inner { align-items: flex-start; gap: 32px; }
+  .sg-h { margin-top: 24px; }
+  .sg-group { display: flex; flex-direction: column; gap: 8px; }
+  .sg-label { color: var(--color-text-muted); font-size: 13px; line-height: 18px; }
+  .sg-swatches { display: flex; flex-wrap: wrap; gap: 16px; }
+  .sg-swatch { display: flex; flex-direction: column; gap: 4px; width: 150px; color: var(--color-text-heading-dark); }
+  .sg-chip { display: block; height: 64px; border: 1px solid var(--color-border-card); border-radius: var(--radius-sm); }
+  .sg-code { font-size: 12px; line-height: 16px; }
+  .sg-hex { color: var(--color-text-muted); font-size: 12px; }
+  .sg-type { display: flex; flex-direction: column; gap: 20px; width: 100%; }
+  .sg-type-row { display: flex; flex-direction: column; gap: 4px; }
+  .sg-left { text-align: left; margin: 0; color: var(--color-text-heading-dark); }
+  .sg-dark { color: var(--color-text-heading-dark); }
+  .sg-spaces { display: flex; flex-direction: column; gap: 8px; color: var(--color-text-heading-dark); }
+  .sg-space { display: flex; align-items: center; gap: 12px; }
+  .sg-bar { display: block; height: 12px; background: var(--color-green); }
+  .sg-radius { display: block; width: 80px; height: 64px; background: var(--color-bg-off-white); border: 1px solid var(--color-border-card); }
+  .sg-row { display: flex; flex-wrap: wrap; gap: 16px; }
+  .sg-dark-row { padding: 24px; background: var(--color-bg-black); border-radius: var(--radius-card); }
+  .sg-components { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; width: 100%; }
+  .sg-pad { padding: 24px; }
+</style>
